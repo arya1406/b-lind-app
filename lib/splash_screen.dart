@@ -27,33 +27,44 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfffffc00),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              'B-LIND',
-              style: TextStyle(
-                  fontFamily: 'Museo Moderno',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 56,
-                  color: Colors.black),
+      body: Stack(
+        children: [
+          Center(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'B-LIND',
+                    style: TextStyle(
+                        fontFamily: 'Museo Moderno',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 56,
+                        color: Colors.black),
+                  ),
+                  Image(
+                    image: AssetImage('images/BMKG.png'),
+                    width: 153,
+                    height: 106,
+                  ),
+                ],
+              ),
             ),
-            Image(
-              image: AssetImage('images/BMKG.png'),
-              width: 153,
-              height: 106,
-            ),
-            Text(
+          ),
+          Center(
+              child: Container(
+            alignment: Alignment.bottomCenter,
+            margin: EdgeInsets.all(10),
+            child: Text(
               'by Aruya',
               style: TextStyle(
                   fontFamily: 'Museo Moderno',
-                  fontSize: 30,
-                  color: Colors.black),
-            )
-          ],
-        ),
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+          ))
+        ],
       ),
     );
   }
