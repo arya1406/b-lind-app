@@ -1,12 +1,4 @@
-import 'package:b_lind/button%20cuaca.dart';
-import 'package:b_lind/button%20gempa.dart';
-import 'package:b_lind/button%20pengaturan.dart';
-import 'package:b_lind/button%20udara.dart';
-import 'package:b_lind/mikrofon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'button.dart';
-import 'dart:async';
 
 bool isPressed = false;
 
@@ -16,6 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double heightButton = 300;
+  double widthButton = 165;
   @override
   Widget build(BuildContext context) {
     TabBar myTabbar = TabBar(
@@ -84,7 +78,138 @@ class _HomePageState extends State<HomePage> {
                     ],
                   )),
                 ),
-                Text('ini tab 2')
+                GestureDetector(
+                  onTapDown: (details) {
+                    setState(() {
+                      isPressed = !isPressed;
+                    });
+                  },
+                  onTapUp: (details) {
+                    setState(() {
+                      isPressed = !isPressed;
+                    });
+                  },
+                  onTapCancel: () {
+                    setState(() {
+                      isPressed = !isPressed;
+                    });
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.only(top: 50),
+                            height: heightButton,
+                            width: widthButton,
+                            decoration: BoxDecoration(
+                                color: Color(0xfffffc00),
+                                borderRadius: BorderRadius.circular(51),
+                                border: Border.all(
+                                    color: Colors.black, width: 1.5)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image(image: AssetImage('images/id-en.png')),
+                                Text(
+                                  'BAHASA',
+                                  style: TextStyle(
+                                      fontFamily: 'Museo Moderno',
+                                      fontSize: 34,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.only(top: 50),
+                            height: heightButton,
+                            width: widthButton,
+                            decoration: BoxDecoration(
+                                color: Color(0xfffffc00),
+                                borderRadius: BorderRadius.circular(51),
+                                border: Border.all(
+                                    color: Colors.black, width: 1.5)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image(
+                                    image:
+                                        AssetImage('images/air_pollute.png')),
+                                Text(
+                                  'KUALITAS\nUDARA',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: 'Museo Moderno',
+                                      fontSize: 29,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.only(bottom: 50),
+                            height: heightButton,
+                            width: widthButton,
+                            decoration: BoxDecoration(
+                                color: Color(0xfffffc00),
+                                borderRadius: BorderRadius.circular(51),
+                                border: Border.all(
+                                    color: Colors.black, width: 1.5)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image(
+                                    image: AssetImage('images/earthquake.png')),
+                                Text(
+                                  'gEMPA',
+                                  style: TextStyle(
+                                      fontFamily: 'Museo Moderno',
+                                      fontSize: 34,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.only(bottom: 50),
+                            height: heightButton,
+                            width: widthButton,
+                            decoration: BoxDecoration(
+                                color: Color(0xfffffc00),
+                                borderRadius: BorderRadius.circular(51),
+                                border: Border.all(
+                                    color: Colors.black, width: 1.5)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image(image: AssetImage('images/weather.png')),
+                                Text(
+                                  'CUACA',
+                                  style: TextStyle(
+                                      fontFamily: 'Museo Moderno',
+                                      fontSize: 34,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
               ]),
             )));
   }
