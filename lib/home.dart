@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'button.dart';
 import 'dart:async';
 
-bool isPressed = true;
+bool isPressed = false;
 
 class HomePage extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                     'B-LIND',
                     style: TextStyle(
                         fontFamily: 'Museo Moderno',
-                        fontSize: 36,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
@@ -57,27 +57,33 @@ class _HomePageState extends State<HomePage> {
                         Size.fromHeight(myTabbar.preferredSize.height)),
               ),
               body: TabBarView(children: [
-                Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'Klik Mikrofon',
-                      style: TextStyle(
-                          fontFamily: 'fira sans',
-                          fontSize: 48,
-                          color: Colors.black),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(), primary: Color(0xfffffc00)),
-                      child: Image(image: AssetImage('images/mic.png')),
-                      onPressed: () {
-                        setState(() {});
-                      },
-                    )
-                  ],
-                )),
+                Container(
+                  margin: EdgeInsets.all(30),
+                  child: Center(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Klik Tombol Mikrofon',
+                        style: TextStyle(
+                            fontFamily: 'fira sans',
+                            fontSize: 35,
+                            color: Colors.black),
+                      ),
+                      Material(
+                          borderRadius: BorderRadius.circular(400),
+                          elevation: 10,
+                          color: Color(0xfffffc00),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(400),
+                              splashColor: Colors.grey,
+                              onTap: () {},
+                              child: Image(
+                                image: AssetImage('images/mic.png'),
+                              )))
+                    ],
+                  )),
+                ),
                 Text('ini tab 2')
               ]),
             )));

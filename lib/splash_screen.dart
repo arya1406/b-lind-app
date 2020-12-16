@@ -40,7 +40,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   fontSize: 56,
                   color: Colors.black),
             ),
-            Image(image: AssetImage('images/BMKG.png')),
+            Image(
+              image: AssetImage('images/BMKG.png'),
+              width: 153,
+              height: 106,
+            ),
             Text(
               'by Aruya',
               style: TextStyle(
