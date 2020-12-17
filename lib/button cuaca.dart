@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'home.dart';
 import 'package:flutter/material.dart';
 
@@ -26,25 +25,37 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
           isPressed = !isPressed;
         });
       },
-      child: Stack(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.27,
-            height: MediaQuery.of(context).size.width * 0.27,
-            child: Transform.rotate(
-              angle: pi / 4,
-              child: Material(
-                color: (isPressed) ? Color(0xfffffc00) : Colors.grey,
-                borderRadius: BorderRadius.circular(16),
-                shadowColor: Colors.grey[700],
-                elevation: (isPressed) ? 15 : 5,
-                child: Transform.rotate(
-                    angle: -pi / 4,
-                    child: Image(image: AssetImage("images/weather.png"))),
-              ),
+      child: new Semantics(
+        container: true,
+        label: 'tombol informasi chuacha',
+        child: Container(
+          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.only(bottom: 50),
+          height: heightButton,
+          width: widthButton,
+          decoration: BoxDecoration(
+              color: Color(0xfffffc00),
+              borderRadius: BorderRadius.circular(51),
+              border: Border.all(color: Colors.black, width: 1.5)),
+          child: InkWell(
+            onTap: () {},
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Image(image: AssetImage('images/weather.png')),
+                ExcludeSemantics(
+                  child: Text(
+                    'CUACA',
+                    style: TextStyle(
+                        fontFamily: 'Museo Moderno',
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
