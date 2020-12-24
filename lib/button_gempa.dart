@@ -1,3 +1,4 @@
+import 'package:b_lind/page_gempa.dart';
 import 'package:flutter/material.dart';
 import 'package:b_lind/home.dart';
 
@@ -38,7 +39,11 @@ class _ButtonGempaState extends State<ButtonGempa> {
                 borderRadius: BorderRadius.circular(51),
                 border: Border.all(color: Colors.black, width: 1.5)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return GempaPage();
+                }));
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
