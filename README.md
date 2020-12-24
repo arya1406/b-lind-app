@@ -1,1 +1,1 @@
-# b-lind-app
+# B-LIND app
