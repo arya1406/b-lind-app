@@ -9,6 +9,7 @@ class _GempaPageState extends State<GempaPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(80),
@@ -32,7 +33,7 @@ class _GempaPageState extends State<GempaPage> {
               label: '',
               child: Container(
                 margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                    EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
                 padding: EdgeInsets.all(13),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(13),
@@ -257,7 +258,7 @@ class _GempaPageState extends State<GempaPage> {
               label: '',
               child: Container(
                 margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
                 padding: EdgeInsets.all(13),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(13),

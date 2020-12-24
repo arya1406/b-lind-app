@@ -1,3 +1,5 @@
+import 'package:b_lind/page_udara.dart';
+
 import 'home.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +40,11 @@ class _ButtonUdaraState extends State<ButtonUdara> {
               borderRadius: BorderRadius.circular(51),
               border: Border.all(color: Colors.black, width: 1.5)),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return UdaraPage();
+              }));
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
