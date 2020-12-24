@@ -12,37 +12,35 @@ class _MicButtonState extends State<MicButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (details) {
-        setState(() {
-          isPressed = !isPressed;
-        });
-      },
-      onTapUp: (details) {
-        setState(() {
-          isPressed = !isPressed;
-        });
-      },
-      onTapCancel: () {
-        setState(() {
-          isPressed = !isPressed;
-        });
-      },
-      child: Stack(
-        children: [
-          Positioned(
-              child: Container(
-            width: MediaQuery.of(context).size.width * 0.6,
-            height: MediaQuery.of(context).size.width * 0.6,
-            child: Material(
-              color: (isPressed) ? Color(0xfffffc00) : Colors.grey,
-              borderRadius: BorderRadius.circular(300),
-              shadowColor: Colors.grey,
-              elevation: (isPressed) ? 15 : 5,
-              child: Image(image: AssetImage("images/mic.png")),
-            ),
-          ))
-        ],
-      ),
-    );
+        onTapDown: (details) {
+          setState(() {
+            isPressed = !isPressed;
+          });
+        },
+        onTapUp: (details) {
+          setState(() {
+            isPressed = !isPressed;
+          });
+        },
+        onTapCancel: () {
+          setState(() {
+            isPressed = !isPressed;
+          });
+        },
+        child: Semantics(
+          container: true,
+          label: 'tombol mikrofon',
+          child: Material(
+              borderRadius: BorderRadius.circular(400),
+              elevation: (isPressed) ? 5 : 10,
+              color: (isPressed) ? Colors.grey : Color(0xfffffc00),
+              child: InkWell(
+                  borderRadius: BorderRadius.circular(400),
+                  onTap: () {},
+                  child: Image(
+                    image: AssetImage('images/mic.png'),
+                    //semanticLabel: 'Tombol Mikrofon',
+                  ))),
+        ));
   }
 }

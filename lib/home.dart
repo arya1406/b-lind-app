@@ -1,9 +1,10 @@
-import 'package:b_lind/button%20cuaca.dart';
-import 'package:b_lind/button%20gempa.dart';
-import 'package:b_lind/button%20pengaturan.dart';
+import 'package:b_lind/button_cuaca.dart';
+import 'package:b_lind/button_gempa.dart';
+import 'package:b_lind/button_bahasa.dart';
+import 'package:b_lind/mikrofon.dart';
 import 'package:flutter/material.dart';
 
-import 'button udara.dart';
+import 'button_udara.dart';
 
 bool isPressed = false;
 double heightButton = 300;
@@ -58,75 +59,63 @@ class _HomePageState extends State<HomePage> {
       ],
     );
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xfffffc00),
-          title: Center(
-            child: Text(
-              'B-LIND',
-              style: TextStyle(
-                  fontFamily: 'Museo Moderno',
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-          ),
-          bottom: PreferredSize(
-              child: Container(
-                color: Color(0xfffffc00),
-                child: myTabbar,
-              ),
-              preferredSize: Size.fromHeight(myTabbar.preferredSize.height)),
-        ),
-        body: TabBarView(children: [
-          Container(
-            margin: EdgeInsets.all(30),
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Klik Tombol Mikrofon',
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color(0xfffffc00),
+              title: Center(
+                child: Text(
+                  'B-LIND',
                   style: TextStyle(
-                      fontFamily: 'fira sans',
-                      fontSize: 35,
+                      fontFamily: 'Museo Moderno',
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
-                Semantics(
-                  container: true,
-                  label: 'tombol mikrofon',
-                  child: Material(
-                      borderRadius: BorderRadius.circular(400),
-                      elevation: (isPressed) ? 5 : 10,
-                      color: (isPressed) ? Colors.grey : Color(0xfffffc00),
-                      child: InkWell(
-                          borderRadius: BorderRadius.circular(400),
-                          onTap: () {},
-                          child: Image(
-                            image: AssetImage('images/mic.png'),
-                            //semanticLabel: 'Tombol Mikrofon',
-                          ))),
-                )
-              ],
-            )),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [ButtonOption(), ButtonUdara()],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [ButtonGempa(), ButtonCuaca()],
-              )
-            ],
+              bottom: PreferredSize(
+                  child: Container(
+                    color: Color(0xfffffc00),
+                    child: myTabbar,
+                  ),
+                  preferredSize:
+                      Size.fromHeight(myTabbar.preferredSize.height)),
+            ),
+            body: TabBarView(children: [
+              Container(
+                margin: EdgeInsets.all(30),
+                child: Center(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'Klik Tombol Mikrofon',
+                      style: TextStyle(
+                          fontFamily: 'fira sans',
+                          fontSize: 35,
+                          color: Colors.black),
+                    ),
+                    MicButton()
+                  ],
+                )),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [ButtonOption(), ButtonUdara()],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [ButtonGempa(), ButtonCuaca()],
+                  )
+                ],
+              ),
+            ]),
           ),
-        ]),
-      ),
-    ));
+        ));
   }
 }

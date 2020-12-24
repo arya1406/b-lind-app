@@ -1,12 +1,12 @@
 import 'home.dart';
 import 'package:flutter/material.dart';
 
-class ButtonOption extends StatefulWidget {
+class ButtonCuaca extends StatefulWidget {
   @override
-  _ButtonOptionState createState() => _ButtonOptionState();
+  _ButtonCuacaState createState() => _ButtonCuacaState();
 }
 
-class _ButtonOptionState extends State<ButtonOption> {
+class _ButtonCuacaState extends State<ButtonCuaca> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,10 +27,10 @@ class _ButtonOptionState extends State<ButtonOption> {
       },
       child: new Semantics(
         container: true,
-        label: 'tombol menukar bahasa',
+        label: 'tombol informasi chuacha',
         child: Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.only(top: 30),
+          margin: EdgeInsets.only(bottom: 50),
           height: heightButton,
           width: widthButton,
           decoration: BoxDecoration(
@@ -42,16 +42,16 @@ class _ButtonOptionState extends State<ButtonOption> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image(image: AssetImage('images/id-en.png')),
+                Image(image: AssetImage('images/weather.png')),
                 ExcludeSemantics(
                   child: Text(
-                    'BAHASA',
+                    'CUACA',
                     style: TextStyle(
                         fontFamily: 'Museo Moderno',
-                        fontSize: 34,
+                        fontSize: 38,
                         fontWeight: FontWeight.bold),
                   ),
-                ),
+                )
               ],
             ),
           ),

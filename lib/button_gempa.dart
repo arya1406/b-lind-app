@@ -34,7 +34,7 @@ class _ButtonGempaState extends State<ButtonGempa> {
             height: heightButton,
             width: widthButton,
             decoration: BoxDecoration(
-                color: Color(0xfffffc00),
+                color: (isPressed) ? Colors.grey : Color(0xfffffc00),
                 borderRadius: BorderRadius.circular(51),
                 border: Border.all(color: Colors.black, width: 1.5)),
             child: InkWell(

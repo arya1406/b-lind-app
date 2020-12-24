@@ -1,12 +1,14 @@
+import 'package:b_lind/page_bahasa.dart';
+
 import 'home.dart';
 import 'package:flutter/material.dart';
 
-class ButtonCuaca extends StatefulWidget {
+class ButtonOption extends StatefulWidget {
   @override
-  _ButtonCuacaState createState() => _ButtonCuacaState();
+  _ButtonOptionState createState() => _ButtonOptionState();
 }
 
-class _ButtonCuacaState extends State<ButtonCuaca> {
+class _ButtonOptionState extends State<ButtonOption> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,31 +29,35 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
       },
       child: new Semantics(
         container: true,
-        label: 'tombol informasi chuacha',
+        label: 'tombol menukar bahasa',
         child: Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.only(bottom: 50),
+          margin: EdgeInsets.only(top: 30),
           height: heightButton,
           width: widthButton,
           decoration: BoxDecoration(
-              color: Color(0xfffffc00),
+              color: (isPressed) ? Colors.grey : Color(0xfffffc00),
               borderRadius: BorderRadius.circular(51),
               border: Border.all(color: Colors.black, width: 1.5)),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return PageBahasa();
+              }));
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image(image: AssetImage('images/weather.png')),
+                Image(image: AssetImage('images/id-en.png')),
                 ExcludeSemantics(
                   child: Text(
-                    'CUACA',
+                    'BAHASA',
                     style: TextStyle(
                         fontFamily: 'Museo Moderno',
-                        fontSize: 38,
+                        fontSize: 34,
                         fontWeight: FontWeight.bold),
                   ),
-                )
+                ),
               ],
             ),
           ),
