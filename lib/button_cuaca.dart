@@ -1,5 +1,6 @@
 import 'home.dart';
 import 'package:flutter/material.dart';
+import 'page_cuaca.dart';
 
 class ButtonCuaca extends StatefulWidget {
   @override
@@ -38,7 +39,11 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
               borderRadius: BorderRadius.circular(51),
               border: Border.all(color: Colors.black, width: 1.5)),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return PageCuaca();
+              }));
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
