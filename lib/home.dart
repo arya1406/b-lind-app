@@ -44,6 +44,11 @@ class _HomePageState extends State<HomePage> {
       textStyle:
           TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
     ),
+    'kualitas': HighlightedWord(
+      onTap: () => print('kualitas'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
+    ),
     'air': HighlightedWord(
       onTap: () => print('air'),
       textStyle:
@@ -56,6 +61,7 @@ class _HomePageState extends State<HomePage> {
   //stt.SpeechToText _speech;
   String _text = "Klik Tombol Mikrofon";
   String bahasa = 'id-ID';
+  String empty = 'mendengarkan...';
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.all(15),
                       height: MediaQuery.of(context).size.height / 3,
                       child: TextHighlight(
-                        text: _text,
+                        text: (_text == '') ? empty : _text,
                         textAlign: TextAlign.center,
                         words: _highlights,
                         textStyle: TextStyle(
