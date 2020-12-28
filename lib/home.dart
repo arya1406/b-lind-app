@@ -1,9 +1,10 @@
 import 'package:b_lind/button_cuaca.dart';
 import 'package:b_lind/button_gempa.dart';
 import 'package:b_lind/button_bahasa.dart';
-import 'package:b_lind/mikrofon.dart';
 import 'package:flutter/material.dart';
-
+import 'package:highlight_text/highlight_text.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:avatar_glow/avatar_glow.dart';
 import 'button_udara.dart';
 
 bool isPressed = false;
@@ -16,6 +17,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final Map<String, HighlightedWord> _highlights = {
+    'cuaca': HighlightedWord(
+      onTap: () => print('cuaca'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
+    ),
+    'gempa': HighlightedWord(
+      onTap: () => print('gempa'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.blue),
+    ),
+    'udara': HighlightedWord(
+      onTap: () => print('udara'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
+    ),
+  };
+
+  bool _isListening = false;
+  stt.SpeechToText _speech;
+  String _text = "Klik Tombol Mikrofon";
+
   @override
   Widget build(BuildContext context) {
     TabBar myTabbar = TabBar(
@@ -85,19 +108,43 @@ class _HomePageState extends State<HomePage> {
             ),
             body: TabBarView(children: [
               Container(
-                margin: EdgeInsets.all(30),
                 child: Center(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      'Klik Tombol Mikrofon',
-                      style: TextStyle(
-                          fontFamily: 'fira sans',
-                          fontSize: 35,
-                          color: Colors.black),
+                    Container(
+                      alignment: Alignment.center,
+                      height: MediaQuery.of(context).size.height / 3,
+                      child: TextHighlight(
+                        text: _text,
+                        words: _highlights,
+                        textStyle: TextStyle(
+                            fontFamily: 'fira sans',
+                            fontSize: 35,
+                            color: Colors.black),
+                      ),
                     ),
-                    MicButton()
+                    Container(
+                      height: MediaQuery.of(context).size.height / 2,
+                      //width: 430,
+                      child: FittedBox(
+                          child: AvatarGlow(
+                        animate: true,
+                        glowColor: Colors.black,
+                        endRadius: 35.0,
+                        duration: const Duration(milliseconds: 2000),
+                        repeatPauseDuration: const Duration(milliseconds: 100),
+                        repeat: _isListening,
+                        child: FloatingActionButton(
+                          backgroundColor: Color(0xfffffc00),
+                          onPressed: _listen,
+                          child: Image(
+                              image: AssetImage(
+                            "images/mic.png",
+                          )),
+                        ),
+                      )),
+                    ),
                   ],
                 )),
               ),
@@ -117,5 +164,23 @@ class _HomePageState extends State<HomePage> {
             ]),
           ),
         ));
+  }
+
+  void _listen() async {
+    if (!_isListening) {
+      bool available = await _speech.initialize(
+          onStatus: (val) => print('onStatus: $val'),
+          onError: (val) => print('onError: $val'));
+      if (available) {
+        setState(() => _isListening = true);
+        _speech.listen(
+            onResult: (val) => setState(() {
+                  _text = val.recognizedWords;
+                }));
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
   }
 }

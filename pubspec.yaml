@@ -23,10 +23,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  avatar_glow: ^1.2.0
   cupertino_icons: ^1.0.0
   custom_radio_grouped_button: ^1.0.6+1
   flutter_launcher_icons: ^0.8.1
   flutter_statusbar_manager: ^2.0.0
+  flutter_tts: ^2.0.0
+  highlight_text: ^0.7.2
+  speech_to_text: ^3.1.0
 
 dev_dependencies:
   flutter_test:
