@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'button_udara.dart';
 
 bool isPressed = false;
@@ -23,8 +24,18 @@ class _HomePageState extends State<HomePage> {
       textStyle:
           TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
     ),
+    'weather': HighlightedWord(
+      onTap: () => print('weather'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
+    ),
     'gempa': HighlightedWord(
       onTap: () => print('gempa'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.blue),
+    ),
+    'earthquake': HighlightedWord(
+      onTap: () => print('earthquake'),
       textStyle:
           TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.blue),
     ),
@@ -33,11 +44,18 @@ class _HomePageState extends State<HomePage> {
       textStyle:
           TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
     ),
+    'air': HighlightedWord(
+      onTap: () => print('air'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
+    ),
   };
 
   bool _isListening = false;
-  stt.SpeechToText _speech;
+  stt.SpeechToText speech = stt.SpeechToText();
+  //stt.SpeechToText _speech;
   String _text = "Klik Tombol Mikrofon";
+  String bahasa = 'id-ID';
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +132,11 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       alignment: Alignment.center,
+                      padding: EdgeInsets.all(15),
                       height: MediaQuery.of(context).size.height / 3,
                       child: TextHighlight(
                         text: _text,
+                        textAlign: TextAlign.center,
                         words: _highlights,
                         textStyle: TextStyle(
                             fontFamily: 'fira sans',
@@ -168,19 +188,21 @@ class _HomePageState extends State<HomePage> {
 
   void _listen() async {
     if (!_isListening) {
-      bool available = await _speech.initialize(
+      bool available = await speech.initialize(
           onStatus: (val) => print('onStatus: $val'),
           onError: (val) => print('onError: $val'));
       if (available) {
         setState(() => _isListening = true);
-        _speech.listen(
+        speech.listen(
+            localeId: bahasa,
+            listenMode: ListenMode.confirmation,
             onResult: (val) => setState(() {
                   _text = val.recognizedWords;
                 }));
       }
     } else {
       setState(() => _isListening = false);
-      _speech.stop();
+      speech.stop();
     }
   }
 }
