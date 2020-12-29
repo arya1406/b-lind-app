@@ -74,34 +74,37 @@ class _HomePageState extends State<HomePage> {
       ),
       tabs: [
         Tab(
-            child: Container(
-          width: 100,
-          child: Image(
-            height: 73,
-            image: AssetImage('images/mic.png'),
-            semanticLabel: 'menu mikrofon',
-          ),
-        )
-            /*Text(
-              'MIKROFON',
-              style: TextStyle(
-                  color: Colors.black, fontFamily: 'fira sans', fontSize: 25),
-            ),
-            */
-            ),
-        Tab(
+            child: Semantics(
+          container: true,
+          label: 'menu mikrofon',
           child: Container(
-              width: 100,
+            width: 100,
+            child: ExcludeSemantics(
               child: Image(
-                image: AssetImage('images/weather.png'),
-                semanticLabel: 'menu informasi lainnya',
-              )
-              /*Text(
-              'INFORMASI',
-              style: TextStyle(
-                  color: Colors.black, fontFamily: 'fira sans', fontSize: 25),
-            ),*/
+                height: 73,
+                image: AssetImage('images/mic.png'),
               ),
+            ),
+          ),
+        )),
+        Tab(
+          child: Semantics(
+            container: true,
+            label: 'menu informasi lainnya',
+            child: Container(
+                width: 100,
+                child: ExcludeSemantics(
+                  child: Image(
+                    image: AssetImage('images/weather.png'),
+                  ),
+                )
+                /*Text(
+                'INFORMASI',
+                style: TextStyle(
+                    color: Colors.black, fontFamily: 'fira sans', fontSize: 25),
+              ),*/
+                ),
+          ),
         ),
       ],
     );
@@ -136,40 +139,52 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(15),
-                      height: MediaQuery.of(context).size.height / 3,
-                      child: TextHighlight(
-                        text: (_text == '') ? empty : _text,
-                        textAlign: TextAlign.center,
-                        words: _highlights,
-                        textStyle: TextStyle(
-                            fontFamily: 'fira sans',
-                            fontSize: 35,
-                            color: Colors.black),
+                    new Semantics(
+                      container: true,
+                      label: _text,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(15),
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: ExcludeSemantics(
+                          child: TextHighlight(
+                            text: (_text == '') ? empty : _text,
+                            textAlign: TextAlign.center,
+                            words: _highlights,
+                            textStyle: TextStyle(
+                                fontFamily: 'fira sans',
+                                fontSize: 35,
+                                color: Colors.black),
+                          ),
+                        ),
                       ),
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      //width: 430,
-                      child: FittedBox(
-                          child: AvatarGlow(
-                        animate: true,
-                        glowColor: Colors.black,
-                        endRadius: 35.0,
-                        duration: const Duration(milliseconds: 2000),
-                        repeatPauseDuration: const Duration(milliseconds: 100),
-                        repeat: _isListening,
-                        child: FloatingActionButton(
-                          backgroundColor: Color(0xfffffc00),
-                          onPressed: _listen,
-                          child: Image(
-                              image: AssetImage(
-                            "images/mic.png",
-                          )),
-                        ),
-                      )),
+                    Semantics(
+                      container: true,
+                      label: 'tombol mikrofon',
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: FittedBox(
+                            child: AvatarGlow(
+                          animate: true,
+                          glowColor: Colors.black,
+                          endRadius: 35.0,
+                          duration: const Duration(milliseconds: 2000),
+                          repeatPauseDuration:
+                              const Duration(milliseconds: 100),
+                          repeat: _isListening,
+                          child: ExcludeSemantics(
+                            child: FloatingActionButton(
+                              backgroundColor: Color(0xfffffc00),
+                              onPressed: _listen,
+                              child: Image(
+                                  image: AssetImage(
+                                "images/mic.png",
+                              )),
+                            ),
+                          ),
+                        )),
+                      ),
                     ),
                   ],
                 )),

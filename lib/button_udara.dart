@@ -29,7 +29,7 @@ class _ButtonUdaraState extends State<ButtonUdara> {
       },
       child: new Semantics(
         container: true,
-        label: 'tombol informasi kualitas udara',
+        label: 'informasi kualitas udara',
         child: Container(
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.only(top: 30),

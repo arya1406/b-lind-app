@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:b_lind/splash_screen.dart';
+import 'package:path_provider/path_provider.dart' as pathProvider;
+import 'package:hive/hive.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var appDocumentDirectory =
+      await pathProvider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDirectory.path);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'B-LIND',

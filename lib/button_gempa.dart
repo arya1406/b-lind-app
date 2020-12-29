@@ -28,7 +28,7 @@ class _ButtonGempaState extends State<ButtonGempa> {
         },
         child: new Semantics(
           container: true,
-          label: 'tomboll informasi gempa bumi',
+          label: 'informasi gempa bumi',
           child: Container(
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.only(bottom: 50),

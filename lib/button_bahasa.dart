@@ -29,7 +29,7 @@ class _ButtonOptionState extends State<ButtonOption> {
       },
       child: new Semantics(
         container: true,
-        label: 'tombol menukar bahasa',
+        label: 'menukar bahasa',
         child: Container(
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.only(top: 30),

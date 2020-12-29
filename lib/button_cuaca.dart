@@ -28,7 +28,7 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
       },
       child: new Semantics(
         container: true,
-        label: 'tombol informasi chuacha',
+        label: 'informasi chuacha',
         child: Container(
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.only(bottom: 50),
