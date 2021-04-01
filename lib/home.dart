@@ -7,6 +7,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'button_udara.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 bool isPressed = false;
 double heightButton = 300;
@@ -17,8 +18,20 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+enum TtsState { stopped, playing }
+
 class _HomePageState extends State<HomePage> {
   final Map<String, HighlightedWord> _highlights = {
+    'mendung': HighlightedWord(
+      onTap: () => print('mendung'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
+    ),
+    'hujan': HighlightedWord(
+      onTap: () => print('hujan'),
+      textStyle:
+          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
+    ),
     'cuaca': HighlightedWord(
       onTap: () => print('cuaca'),
       textStyle:
@@ -62,6 +75,67 @@ class _HomePageState extends State<HomePage> {
   String _text = "Klik Tombol Mikrofon";
   String bahasa = 'id-ID';
   String empty = 'mendengarkan...';
+
+  var isMendung = 'mendung';
+  var isHujan = 'hujan';
+  var isGerimis = 'gerimis';
+  var isAwan = 'awan';
+  var isPanas = 'panas';
+  var isDingin = 'dingin';
+  var isGelap = 'gelap';
+  var isTerang = 'terang';
+  var isSejuk = 'sejuk';
+  var isCuacanya = 'cuacanya';
+  var isCuaca = 'cuaca'; // cuaca
+  var isGetarannya = 'getaranya';
+  var isGetaran = 'getaran';
+  var isGempanya = 'gempanya';
+  var isGempa = 'gempa'; // gempa
+  var isPolusi = 'polusi';
+  var isUdaranya = 'udaranya'; // udara
+  var isUdara = 'udara';
+  var isHari = 'hari ini';
+  var isBesok = 'besok';
+  var isSekarang = 'sekarang';
+  var newText = ''; //?
+  var nlp;
+
+//? Data cuaca dari DBase
+  var isWilayah = '';
+  var gps_wilayah = '';
+  var waktu = '';
+  var weather = '';
+  var suhu = '';
+  var kelembaban = '';
+  var w_speed = '';
+  var w_dir = '';
+
+//? Data gempa dari DBase
+  var titik_gempa = '';
+  var titik_pengguna = '';
+  var magnitude = '';
+  var tanggal = '';
+  var jam = '';
+  var wil_gempa = '';
+  var jarak = ''; //? perhitungan dari titik_gempa dengan titik_pengguna
+  var potensi = '';
+
+  //? Data kualitas udara di Dbase
+  var wil_udara = '';
+  var kondisi_udara = '';
+
+  FlutterTts flutterTts;
+  dynamic languages;
+  String language;
+  double volume = 0.5;
+  double pitch = 1.0;
+  double rate = 0.5;
+  String _newVoiceText;
+  TtsState ttsState = TtsState.stopped;
+
+  get isPlaying => ttsState == TtsState.playing;
+
+  get isStopped => ttsState == TtsState.stopped;
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +191,9 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Color(0xfffffc00),
               title: Center(
                 child: Text(
-                  'B-LIND',
+                  'infoBMKG',
                   style: TextStyle(
-                      fontFamily: 'Museo Moderno',
+                      fontFamily: 'fauna one',
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
@@ -224,6 +298,27 @@ class _HomePageState extends State<HomePage> {
     } else {
       setState(() => _isListening = false);
       speech.stop();
+    }
+  }
+
+  Future _speak() async {
+    var cuaca = _text.contains(isCuaca);
+    var gempa = _text.contains(isGempa);
+    var udara = _text.contains(isUdara);
+    var wilayah = _text.contains(isWilayah);
+    var sekarang = _text.contains(isSekarang);
+    var besok = _text.contains(isBesok);
+    var hari_ini = _text.contains(isHari);
+
+    if (cuaca) {
+      newText =
+          ("Cuaca di jambi Pada pukul 13 hari ini, cuaca hujan dengan suhu 27 derajat, kelembaban 90 dan kecepatan angin 3 kilometer perjam ke tenggara");
+      if (newText != null) {
+        if (newText.isNotEmpty) {
+          var result = await flutterTts.speak(newText);
+          if (result == 1) setState(() => ttsState = TtsState.playing);
+        }
+      }
     }
   }
 }
