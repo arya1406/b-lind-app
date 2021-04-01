@@ -35,12 +35,22 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'B-LIND',
+                    'InfoBMKG-PVI',
                     style: TextStyle(
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fauna one',
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.bold,
-                        fontSize: 56,
+                        fontSize: 45,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    'InfoBMKG for People with\nVision Impairments\n\n',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: 'fauna one',
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                         color: Colors.black),
                   ),
                   Image(

@@ -10,7 +10,7 @@ void main() async {
   Hive.init(appDocumentDirectory.path);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'B-LIND',
+    title: 'InfoBMKG',
     home: SplashScreen(),
   ));
 }

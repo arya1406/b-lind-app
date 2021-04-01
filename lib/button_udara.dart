@@ -48,14 +48,14 @@ class _ButtonUdaraState extends State<ButtonUdara> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(image: AssetImage('images/air_pollute.png')),
+                Image(image: AssetImage('images/air.png')),
                 ExcludeSemantics(
                   child: new Text(
                     'KUALITAS\nUDARA',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontFamily: 'Museo Moderno',
-                        fontSize: 29,
+                        fontFamily: 'fauna one',
+                        fontSize: 25,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

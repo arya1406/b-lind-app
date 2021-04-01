@@ -53,8 +53,8 @@ class _ButtonOptionState extends State<ButtonOption> {
                   child: Text(
                     'BAHASA',
                     style: TextStyle(
-                        fontFamily: 'Museo Moderno',
-                        fontSize: 34,
+                        fontFamily: 'fauna one',
+                        fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

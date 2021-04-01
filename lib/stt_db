@@ -5,8 +5,19 @@ void main(List<String> args) async {
   FlutterTts flutterTts;
   TtsState ttsState = TtsState.stopped;
   var _text = ''; //_text dari STT
-  var isCuaca = 'cuaca';
-  var isGempa = 'gempa';
+  var isMendung = 'mendung';
+  var isHujan = 'hujan';
+  var isGerimis = 'gerimis';
+  var isAwan = 'awan';
+  var isPanas = 'panas';
+  var isDingin = 'dingin';
+  var isGelap = 'gelap';
+  var isTerang = 'terang';
+  var isSejuk = 'sejuk';
+  var isCuaca = 'cuaca'; // cuaca
+  var isGetar = 'getar';
+  var isGempa = 'gempa'; // gempa
+  var isPolusi = 'polusi';
   var isUdara = 'udara';
   var isHari = 'hari ini';
   var isBesok = 'besok';

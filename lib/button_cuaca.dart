@@ -52,8 +52,8 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
                   child: Text(
                     'CUACA',
                     style: TextStyle(
-                        fontFamily: 'Museo Moderno',
-                        fontSize: 38,
+                        fontFamily: 'fauna one',
+                        fontSize: 35,
                         fontWeight: FontWeight.bold),
                   ),
                 )

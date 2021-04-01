@@ -50,9 +50,9 @@ class _ButtonGempaState extends State<ButtonGempa> {
                   Image(image: AssetImage('images/earthquake.png')),
                   ExcludeSemantics(
                     child: Text(
-                      'gEMPA',
+                      'GEMPA',
                       style: TextStyle(
-                          fontFamily: 'Museo Moderno',
+                          fontFamily: 'fauna one',
                           fontSize: 34,
                           fontWeight: FontWeight.bold),
                     ),
