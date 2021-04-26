@@ -98,6 +98,9 @@ class _HomePageState extends State<HomePage> {
   var isBesok = 'besok';
   var isSekarang = 'sekarang';
   var newText = ''; //?
+  var cuacaText = '';
+  var gempaText = '';
+  var udaraText = '';
   var nlp;
 
 //? Data cuaca dari DBase
@@ -124,23 +127,41 @@ class _HomePageState extends State<HomePage> {
   var wil_udara = '';
   var kondisi_udara = '';
 
-  FlutterTts flutterTts;
   dynamic languages;
   String language;
   double volume = 0.5;
   double pitch = 1.0;
   double rate = 0.5;
-  String _newVoiceText;
+  String newVoiceText;
   TtsState ttsState = TtsState.stopped;
 
   get isPlaying => ttsState == TtsState.playing;
-
   get isStopped => ttsState == TtsState.stopped;
+
+  final FlutterTts flutterTts = FlutterTts();
+
+  Future _speak() async {
+    var cuaca = newText.contains(isCuaca);
+    var gempa = newText.contains(isGempa);
+    var udara = newText.contains(isUdara);
+    var wilayah = newText.contains(isWilayah);
+    var sekarang = newText.contains(isSekarang);
+    var besok = newText.contains(isBesok);
+    var hari_ini = newText.contains(isHari);
+
+    cuacaText =
+        ("Cuaca di jambi Pada pukul 13 hari ini, cuaca hujan dengan suhu 27 derajat, kelembaban 90 dan kecepatan angin 3 kilometer perjam ke tenggara");
+
+    flutterTts.setLanguage(bahasa);
+    await flutterTts.setPitch(pitch);
+    if (cuaca) {
+      print("cuaca");
+      await flutterTts.speak(cuacaText);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    Future _speak(String _text) async {}
-
     TabBar myTabbar = TabBar(
       indicatorSize: TabBarIndicatorSize.label,
       indicator: BoxDecoration(
@@ -294,38 +315,21 @@ class _HomePageState extends State<HomePage> {
         speech.listen(
             localeId: bahasa,
             listenMode: ListenMode.confirmation,
-            onResult: (val) => setState(() {
-                  _text = val.recognizedWords;
-                }));
+            onResult: (val) {
+              setState(() {
+                _text = val.recognizedWords;
+              });
+            });
       }
     } else {
-      setState(() => _isListening = false);
-      speech.stop();
+      setState(() {
+        _isListening = false;
+        newText = _text;
+      });
+      print('stop');
       _speak();
-    }
-  }
-
-  Future _speak() async {
-    var cuaca = _text.contains(isCuaca);
-    var gempa = _text.contains(isGempa);
-    var udara = _text.contains(isUdara);
-    var wilayah = _text.contains(isWilayah);
-    var sekarang = _text.contains(isSekarang);
-    var besok = _text.contains(isBesok);
-    var hari_ini = _text.contains(isHari);
-    await flutterTts.setLanguage("id-ID");
-    await flutterTts.setPitch(1);
-    await flutterTts.speak(_text);
-
-    if (cuaca) {
-      newText =
-          ("Cuaca di jambi Pada pukul 13 hari ini, cuaca hujan dengan suhu 27 derajat, kelembaban 90 dan kecepatan angin 3 kilometer perjam ke tenggara");
-      if (newText != null) {
-        if (newText.isNotEmpty) {
-          var result = await flutterTts.speak(newText);
-          if (result == 1) setState(() => ttsState = TtsState.playing);
-        }
-      }
+      speech.stop();
+      print('stop');
     }
   }
 }
