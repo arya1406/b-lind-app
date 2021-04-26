@@ -139,6 +139,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Future _speak(String _text) async {}
+
     TabBar myTabbar = TabBar(
       indicatorSize: TabBarIndicatorSize.label,
       indicator: BoxDecoration(
@@ -211,6 +213,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 child: Center(
                     child: Column(
+                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     new Semantics(
@@ -218,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                       label: _text,
                       child: Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.all(15),
+                        padding: EdgeInsets.all(13),
                         height: MediaQuery.of(context).size.height / 3,
                         child: ExcludeSemantics(
                           child: TextHighlight(
@@ -298,6 +301,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       setState(() => _isListening = false);
       speech.stop();
+      _speak();
     }
   }
 
@@ -309,6 +313,9 @@ class _HomePageState extends State<HomePage> {
     var sekarang = _text.contains(isSekarang);
     var besok = _text.contains(isBesok);
     var hari_ini = _text.contains(isHari);
+    await flutterTts.setLanguage("id-ID");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(_text);
 
     if (cuaca) {
       newText =
