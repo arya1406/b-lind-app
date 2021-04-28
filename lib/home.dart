@@ -329,8 +329,6 @@ class _HomePageState extends State<HomePage> {
     } else {
       setState(() {
         _isListening = false;
-        //_speak();
-        newText = _text;
       });
       speech.stop();
     }
