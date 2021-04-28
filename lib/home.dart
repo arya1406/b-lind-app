@@ -75,6 +75,7 @@ class _HomePageState extends State<HomePage> {
   String _text = "Klik Tombol Mikrofon";
   String bahasa = 'id-ID';
   String empty = 'mendengarkan...';
+  Map varMap;
 
   var isMendung = 'mendung';
   var isHujan = 'hujan';
@@ -105,27 +106,27 @@ class _HomePageState extends State<HomePage> {
 
 //? Data cuaca dari DBase
   var isWilayah = '';
-  var gps_wilayah = '';
+  var gpsWilayah = '';
   var waktu = '';
   var weather = '';
   var suhu = '';
   var kelembaban = '';
-  var w_speed = '';
-  var w_dir = '';
+  var wSpeed = '';
+  var wDir = '';
 
 //? Data gempa dari DBase
-  var titik_gempa = '';
-  var titik_pengguna = '';
+  var titikGempa = '';
+  var titikPengguna = '';
   var magnitude = '';
   var tanggal = '';
   var jam = '';
-  var wil_gempa = '';
+  var wilGempa = '';
   var jarak = ''; //? perhitungan dari titik_gempa dengan titik_pengguna
   var potensi = '';
 
   //? Data kualitas udara di Dbase
-  var wil_udara = '';
-  var kondisi_udara = '';
+  var wilUdara = '';
+  var kondisiUdara = '';
 
   dynamic languages;
   String language;
@@ -141,13 +142,14 @@ class _HomePageState extends State<HomePage> {
   final FlutterTts flutterTts = FlutterTts();
 
   Future _speak() async {
+    speech.stop();
     var cuaca = newText.contains(isCuaca);
     var gempa = newText.contains(isGempa);
     var udara = newText.contains(isUdara);
     var wilayah = newText.contains(isWilayah);
     var sekarang = newText.contains(isSekarang);
     var besok = newText.contains(isBesok);
-    var hari_ini = newText.contains(isHari);
+    var hariIni = newText.contains(isHari);
 
     cuacaText =
         ("Cuaca di jambi Pada pukul 13 hari ini, cuaca hujan dengan suhu 27 derajat, kelembaban 90 dan kecepatan angin 3 kilometer perjam ke tenggara");
@@ -319,17 +321,18 @@ class _HomePageState extends State<HomePage> {
               setState(() {
                 _text = val.recognizedWords;
               });
+              if (val.finalResult) {
+                _speak();
+              }
             });
       }
     } else {
       setState(() {
         _isListening = false;
+        //_speak();
         newText = _text;
       });
-      print('stop');
-      _speak();
       speech.stop();
-      print('stop');
     }
   }
 }
