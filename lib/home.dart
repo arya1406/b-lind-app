@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   var isGetarannya = 'getaranya';
   var isGetaran = 'getaran';
   var isGempanya = 'gempanya';
-  var isGempa = 'Gempa'; // gempa
+  var isGempa = 'gempa'; // gempa
   var isPolusi = 'polusi';
   var isUdaranya = 'udaranya'; // udara
   var isUdara = 'udara';
