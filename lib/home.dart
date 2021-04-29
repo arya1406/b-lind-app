@@ -1,13 +1,13 @@
+import 'package:avatar_glow/avatar_glow.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:b_lind/button_bahasa.dart';
 import 'package:b_lind/button_cuaca.dart';
 import 'package:b_lind/button_gempa.dart';
-import 'package:b_lind/button_bahasa.dart';
-import 'package:flutter/material.dart';
-import 'package:highlight_text/highlight_text.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
-import 'package:avatar_glow/avatar_glow.dart';
-import 'package:speech_to_text/speech_to_text.dart';
+
 import 'button_udara.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 
 bool isPressed = false;
 double heightButton = 300;
@@ -21,54 +21,6 @@ class HomePage extends StatefulWidget {
 enum TtsState { stopped, playing }
 
 class _HomePageState extends State<HomePage> {
-  final Map<String, HighlightedWord> _highlights = {
-    'mendung': HighlightedWord(
-      onTap: () => print('mendung'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
-    ),
-    'hujan': HighlightedWord(
-      onTap: () => print('hujan'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
-    ),
-    'cuaca': HighlightedWord(
-      onTap: () => print('cuaca'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
-    ),
-    'weather': HighlightedWord(
-      onTap: () => print('weather'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.red),
-    ),
-    'gempa': HighlightedWord(
-      onTap: () => print('gempa'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.blue),
-    ),
-    'earthquake': HighlightedWord(
-      onTap: () => print('earthquake'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.blue),
-    ),
-    'udara': HighlightedWord(
-      onTap: () => print('udara'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
-    ),
-    'kualitas': HighlightedWord(
-      onTap: () => print('kualitas'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
-    ),
-    'air': HighlightedWord(
-      onTap: () => print('air'),
-      textStyle:
-          TextStyle(fontFamily: 'fira sans', fontSize: 35, color: Colors.green),
-    ),
-  };
-
   bool _isListening = false;
   stt.SpeechToText speech = stt.SpeechToText();
   //stt.SpeechToText _speech;
@@ -247,11 +199,11 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.all(13),
                         height: MediaQuery.of(context).size.height / 3,
                         child: ExcludeSemantics(
-                          child: TextHighlight(
-                            text: (_text == '') ? empty : _text,
+                          child: Text(
+                            //maxLines: 21,
+                            (_text == '') ? empty : _text,
                             textAlign: TextAlign.center,
-                            words: _highlights,
-                            textStyle: TextStyle(
+                            style: TextStyle(
                                 fontFamily: 'fira sans',
                                 fontSize: 35,
                                 color: Colors.black),

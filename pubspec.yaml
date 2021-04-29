@@ -30,7 +30,7 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   flutter_statusbar_manager: ^2.0.0
   flutter_tts: ^2.0.0
-  highlight_text: ^0.7.2
+  
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
   hive_generator: ^0.8.2
