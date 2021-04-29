@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   var isGetarannya = 'getaranya';
   var isGetaran = 'getaran';
   var isGempanya = 'gempanya';
-  var isGempa = 'gempa'; // gempa
+  var isGempa = 'Gempa'; // gempa
   var isPolusi = 'polusi';
   var isUdaranya = 'udaranya'; // udara
   var isUdara = 'udara';
@@ -95,6 +95,8 @@ class _HomePageState extends State<HomePage> {
 
   Future _speak() async {
     speech.stop();
+    newText = _text;
+    newText.toLowerCase();
     var cuaca = newText.contains(isCuaca);
     var gempa = newText.contains(isGempa);
     var udara = newText.contains(isUdara);
@@ -105,12 +107,21 @@ class _HomePageState extends State<HomePage> {
 
     cuacaText =
         ("Cuaca di jambi Pada pukul 13 hari ini, cuaca hujan dengan suhu 27 derajat, kelembaban 90 dan kecepatan angin 3 kilometer perjam ke tenggara");
+    gempaText =
+        ("gempa berkekuatan 5.5 Magnitudo\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami");
+    udaraText = ("Kualitas Udara di wilayah\nKemayoran Kurang Sehat");
 
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
+
     if (cuaca) {
-      print("cuaca");
       await flutterTts.speak(cuacaText);
+    }
+    if (gempa) {
+      await flutterTts.speak(gempaText);
+    }
+    if (udara) {
+      await flutterTts.speak(udaraText);
     }
   }
 
