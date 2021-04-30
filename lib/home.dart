@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   String _text = "Klik Tombol Mikrofon";
   String bahasa = 'id-ID';
   String empty = 'mendengarkan...';
-  Map varMap;
+  Map? varMap;
 
   var isMendung = 'mendung';
   var isHujan = 'hujan';
@@ -81,11 +81,11 @@ class _HomePageState extends State<HomePage> {
   var kondisiUdara = '';
 
   dynamic languages;
-  String language;
+  String? language;
   double volume = 0.5;
   double pitch = 1.0;
   double rate = 0.5;
-  String newVoiceText;
+  String? newVoiceText;
   TtsState ttsState = TtsState.stopped;
 
   get isPlaying => ttsState == TtsState.playing;

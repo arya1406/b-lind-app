@@ -1,5 +1,6 @@
 import 'package:b_lind/Aceh/Aceh_kab_page.dart';
 import 'package:flutter/material.dart';
+import 'scraping_test.dart';
 
 class PageCuaca extends StatefulWidget {
   @override
@@ -80,7 +81,11 @@ class _PageCuacaState extends State<PageCuaca> {
                 border: Border.all(color: Colors.black, width: 1),
               ),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Scrapper();
+                  }));
+                },
                 child: Text('Provinsi \nBangka Belitung',
                     textAlign: TextAlign.center,
                     style: TextStyle(
