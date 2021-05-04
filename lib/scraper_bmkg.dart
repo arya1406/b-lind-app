@@ -53,11 +53,32 @@ Future gempa() async {
   try {
     var client = Client();
     Response response = await client.get(
+        Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
+    xml2json.parse(response.body);
+    var jsondata = xml2json.toGData();
+    var data = json.decode(jsondata);
+    for (var i = 0; i < data['Infogempa']['gempa'].length; i++) {
+      print(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+    }
+    //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+  } catch (e) {
+    print(e);
+  }
+}
+
+Future cuaca() async {
+  Xml2Json xml2json = new Xml2Json();
+  try {
+    var client = Client();
+    Response response = await client.get(
         Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.xml'));
     xml2json.parse(response.body);
     var jsondata = xml2json.toGData();
     var data = json.decode(jsondata);
-    print(data);
+    for (var i = 0; i < data['Infogempa']['gempa'].length; i++) {
+      print(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+    }
+    //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
   } catch (e) {
     print(e);
   }
