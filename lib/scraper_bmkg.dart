@@ -1,9 +1,10 @@
 import 'dart:convert'; // Contains the JSON encoder
+import 'package:xml2json/xml2json.dart';
 import 'package:http/http.dart'; // Contains a client for making API calls
 import 'package:html/parser.dart'; // Contains HTML parsers to generate a Document object
 import 'package:html/dom.dart'; // Contains DOM related classes for extracting data from elements
 
-Future initiate() async {
+Future udara() async {
   //? Make API call to web
   var client = Client();
   Response response = await client.get(Uri.parse(
@@ -24,7 +25,6 @@ Future initiate() async {
     print(kotaSub);
     for (var j = 0; j < 24; j++) {
       var dataIndex = data.indexOf("['$j',");
-      var sikuIndex = data.indexOf("],");
       if (dataIndex == -1) {
         break;
       }
@@ -46,4 +46,19 @@ Future initiate() async {
   //var dataSub = data.substring(dataIndex + 6, dataIndex + 11);
   //var dataPrint = dataIndex.toString() + '\n' + dataSub;
   //return print(dataPrint);
+}
+
+Future gempa() async {
+  Xml2Json xml2json = new Xml2Json();
+  try {
+    var client = Client();
+    Response response = await client.get(
+        Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.xml'));
+    xml2json.parse(response.body);
+    var jsondata = xml2json.toGData();
+    var data = json.decode(jsondata);
+    print(data);
+  } catch (e) {
+    print(e);
+  }
 }

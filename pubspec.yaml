@@ -27,7 +27,7 @@ dependencies:
   build_runner: ^1.10.11
   cupertino_icons: ^1.0.0
   custom_radio_grouped_button: ^1.0.6+1
-  flutter_launcher_icons: ^0.8.1
+  #flutter_launcher_icons: ^0.8.1
   flutter_statusbar_manager: ^2.0.0
   flutter_tts: ^2.0.0
   hive: ^1.4.4+1
@@ -38,6 +38,7 @@ dependencies:
   path_provider: ^1.6.24
   speech_to_text: ^3.1.0
   web_scraper: ^0.1.4
+  xml2json: ^5.1.0
 
 dev_dependencies:
   flutter_test:
