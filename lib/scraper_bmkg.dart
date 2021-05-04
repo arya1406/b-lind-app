@@ -18,15 +18,26 @@ Future initiate() async {
   }
   for (int i = 0; i < linkMap.length; i++) {
     var data = linkMap[i]['script'];
+    var kotaIndex = data.indexOf("('#container");
+    var petikIndex = data.indexOf("').highcharts");
+    var kotaSub = data.substring(kotaIndex + 12, petikIndex);
+    print(kotaSub);
     for (var j = 0; j < 24; j++) {
       var dataIndex = data.indexOf("['$j',");
-      var kotaIndex = data.indexOf("Konsentrasi PM<sub>10<sub> di ");
+      var sikuIndex = data.indexOf("],");
       if (dataIndex == -1) {
         break;
+      }
+      if (j >= 10) {
+        var dataSub = data.substring(dataIndex + 7, dataIndex + 10);
+        var parseData = double.parse(dataSub);
+        assert(parseData is double);
+        print(parseData);
       } else {
-        var dataSub = data.substring(dataIndex, dataIndex + 11);
-        var kotaSub = data.substring(kotaIndex, kotaIndex + 32);
-        print(dataSub);
+        var dataSub = data.substring(dataIndex + 6, dataIndex + 9);
+        var parseData = double.parse(dataSub);
+        assert(parseData is double);
+        print(parseData);
       }
     }
   }
