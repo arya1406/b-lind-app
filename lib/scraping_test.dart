@@ -12,20 +12,24 @@ class _ScrapperState extends State<Scrapper> {
   bool loaded = false;
   String popNum = '';
   String popWil = '';
-  List<Map<String, dynamic>>? namaWilayah;
-  late List<Map<String, dynamic>> productDescription;
+  List<Map<String, dynamic>> namaWilayah;
+  List<Map<String, dynamic>> productDescription;
 
   void fetchProducts() async {
+    print('masuk funsi');
     // load webpage and download into local state library
     if (await webScraper
         .loadWebPage('/kualitas-udara/informasi-partikulat-pm10.bmkg')) {
       setState(() {
         // getElement takes the address of html tag/element and attributes you want to scrap from website
         // it will return the attributes in the same order passed
-        namaWilayah =
-            webScraper.getElement('div.pm10 > hr > div#PANGKALANBUN', ['id']);
-        popWil = namaWilayah![0]['id'];
+        namaWilayah = webScraper
+            .getElement('div.pm10 > hr > script', ['text/javascript']);
+        print(namaWilayah);
+        popWil = namaWilayah[0]['text/javascript'];
       });
+    } else {
+      popWil = 'web tidak ke-load';
     }
   }
 

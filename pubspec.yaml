@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -33,7 +33,8 @@ dependencies:
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
   hive_generator: ^0.8.2
-  #http: ^0.12.2
+  html: ^0.15.0
+  http: ^0.13.2
   path_provider: ^1.6.24
   speech_to_text: ^3.1.0
   web_scraper: ^0.1.4

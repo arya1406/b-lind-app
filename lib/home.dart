@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   String _text = "Klik Tombol Mikrofon";
   String bahasa = 'id-ID';
   String empty = 'mendengarkan...';
-  Map? varMap;
+  Map varMap;
 
   var isMendung = 'mendung';
   var isHujan = 'hujan';
@@ -81,11 +81,11 @@ class _HomePageState extends State<HomePage> {
   var kondisiUdara = '';
 
   dynamic languages;
-  String? language;
+  String language;
   double volume = 0.5;
   double pitch = 1.0;
   double rate = 0.5;
-  String? newVoiceText;
+  String newVoiceText;
   TtsState ttsState = TtsState.stopped;
 
   get isPlaying => ttsState == TtsState.playing;
@@ -95,8 +95,7 @@ class _HomePageState extends State<HomePage> {
 
   Future _speak() async {
     speech.stop();
-    newText = _text;
-    newText.toLowerCase();
+    newText = _text.toLowerCase();
     var cuaca = newText.contains(isCuaca);
     var gempa = newText.contains(isGempa);
     var udara = newText.contains(isUdara);
@@ -123,6 +122,11 @@ class _HomePageState extends State<HomePage> {
     if (udara) {
       await flutterTts.speak(udaraText);
     }
+  }
+
+  Future _stop() async {
+    var result = await flutterTts.stop();
+    if (result == 1) setState(() => ttsState = TtsState.stopped);
   }
 
   @override
@@ -276,7 +280,12 @@ class _HomePageState extends State<HomePage> {
           onStatus: (val) => print('onStatus: $val'),
           onError: (val) => print('onError: $val'));
       if (available) {
-        setState(() => _isListening = true);
+        setState(() {
+          _isListening = true;
+          if (_isListening) {
+            _stop();
+          }
+        });
         speech.listen(
             localeId: bahasa,
             listenMode: ListenMode.confirmation,
