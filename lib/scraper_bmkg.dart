@@ -70,14 +70,22 @@ Future cuaca() async {
   Xml2Json xml2json = new Xml2Json();
   try {
     var client = Client();
-    Response response = await client.get(
-        Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.xml'));
+    Response response = await client.get(Uri.parse(
+        'https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-Indonesia.xml'));
     xml2json.parse(response.body);
     var jsondata = xml2json.toGData();
     var data = json.decode(jsondata);
-    for (var i = 0; i < data['Infogempa']['gempa'].length; i++) {
-      print(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+    for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
+      print(data['data']['forecast']['area'][i]['name'][0][r'$t']);
+      for (var j = 0;
+          j < data['data']['forecast']['area'][i]['parameter'].length;
+          j++) {
+        print(
+            data['data']['forecast']['area'][i]['parameter'][j]['description']);
+      }
     }
+    print(data['data']['forecast']['area'][0]['parameter'][0]['timerange'][0]
+        ['value'][r'$t']);
     //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
   } catch (e) {
     print(e);
