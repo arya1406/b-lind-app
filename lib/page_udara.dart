@@ -42,79 +42,6 @@ class _UdaraPageState extends State<UdaraPage> {
                   ),
                   child: InkWell(
                     onTap: () {},
-                    child: Text('Kualitas Udara di wilayah \nCibeureum Sehat',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 21,
-                            fontFamily: 'Museo Moderno',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              Semantics(
-                container: true,
-                label: '',
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: Color(0xfffffc00),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Text(
-                        'Kualitas Udara di wilayah \nKemayoran Kurang Sehat',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 21,
-                            fontFamily: 'Museo Moderno',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              Semantics(
-                container: true,
-                label: '',
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: Color(0xfffffc00),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Text('Kualitas Udara di wilayah \nKototabang Sehat',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 21,
-                            fontFamily: 'Museo Moderno',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              Semantics(
-                container: true,
-                label: '',
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: Color(0xfffffc00),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
                     child: Text('Kualitas Udara di wilayah \nMedan Sehat',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -130,56 +57,7 @@ class _UdaraPageState extends State<UdaraPage> {
                 label: '',
                 child: Container(
                   margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: Color(0xfffffc00),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Text('Kualitas Udara di wilayah \nMuarateweh Sedang',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 21,
-                            fontFamily: 'Museo Moderno',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              Semantics(
-                container: true,
-                label: '',
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: Color(0xfffffc00),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Text(
-                        'Kualitas Udara di wilayah \nPalembang Kurang Sehat',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 21,
-                            fontFamily: 'Museo Moderno',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              Semantics(
-                container: true,
-                label: '',
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                      EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
                   padding: EdgeInsets.all(13),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13),
@@ -204,7 +82,7 @@ class _UdaraPageState extends State<UdaraPage> {
                 label: '',
                 child: Container(
                   margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+                      EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
                   padding: EdgeInsets.all(13),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13),
@@ -213,7 +91,31 @@ class _UdaraPageState extends State<UdaraPage> {
                   ),
                   child: InkWell(
                     onTap: () {},
-                    child: Text('Kualitas Udara di wilayah \nSampit Baik',
+                    child: Text('Kualitas Udara di wilayah \nCibeureum Sehat',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 21,
+                            fontFamily: 'Museo Moderno',
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+              Semantics(
+                container: true,
+                label: '',
+                child: Container(
+                  margin:
+                      EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+                  padding: EdgeInsets.all(13),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(13),
+                    color: Color(0xfffffc00),
+                    border: Border.all(color: Colors.black, width: 1),
+                  ),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Text('Kualitas Udara di wilayah \nKototabang Sehat',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,

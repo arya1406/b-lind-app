@@ -43,7 +43,7 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan 5.5 Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -68,7 +68,7 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 5.3 Magnitude\npada 9 November jam 16.30\ndi 1201 kilometer baratdaya NIASBARAT-SUMUT. \n1490  kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan 5.1 Magnitude\npada 28 Juni jam 08.56\ndi 58 kilometer tenggara KAB-KUPANG-NTT. \n2464  kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -93,7 +93,7 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 6.5 Magnitude\npada 7 November jam 06.41\ndi 21 kilometer baratlaut MamujuTengah-SULBAR. \n1742  kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan 5.3 Magnitude\npada 28 Juni jam 05.15\ndi 55 kilometer baratdaya GUNUNG-KIDUL. \n1082  kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -118,7 +118,7 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 5.2 Magnitude\npada 6 November jam 01.20\ndi 92 kilometer timurlaut MalukuBaratDaya. \n2835  kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan 5.1 Magnitude\npada 28 Juni jam 04.19\ndi 186 kilometer timurlaut MalukuTenggaraBarat. \n2965  kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -143,132 +143,7 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Museo Moderno',
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ),
-            Semantics(
-              container: true,
-              label: '',
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                padding: EdgeInsets.all(13),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
-                  color: Color(0xfffffc00),
-                  border: Border.all(color: Colors.black, width: 1),
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Museo Moderno',
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ),
-            Semantics(
-              container: true,
-              label: '',
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                padding: EdgeInsets.all(13),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
-                  color: Color(0xfffffc00),
-                  border: Border.all(color: Colors.black, width: 1),
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Museo Moderno',
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ),
-            Semantics(
-              container: true,
-              label: '',
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                padding: EdgeInsets.all(13),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
-                  color: Color(0xfffffc00),
-                  border: Border.all(color: Colors.black, width: 1),
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Museo Moderno',
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ),
-            Semantics(
-              container: true,
-              label: '',
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                padding: EdgeInsets.all(13),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
-                  color: Color(0xfffffc00),
-                  border: Border.all(color: Colors.black, width: 1),
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Museo Moderno',
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ),
-            Semantics(
-              container: true,
-              label: '',
-              child: Container(
-                margin:
-                    EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
-                padding: EdgeInsets.all(13),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
-                  color: Color(0xfffffc00),
-                  border: Border.all(color: Colors.black, width: 1),
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan 5.0 Magnitude\npada 27 Juni jam 22.56\ndi 50 kilometer baratdaya MUKOMUKO-BENGKULU. \n525 kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
