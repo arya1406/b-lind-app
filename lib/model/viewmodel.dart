@@ -25,12 +25,17 @@ class HomeViewModel extends BaseViewModel {
       setBusy(false);
     } else {
       _teks = "Fetching data from Hive";
-      print("Getting dta from API");
+      print("Getting data from API");
       setBusy(true);
-      var result = await udaraService.udara();
+      var result = await UdaraService().udara();
       (result as List).map((e) {
-        KualitasUdara udara = KualitasUdara(wilayah: )
-      });
+        KualitasUdara kualitasUdara =
+            KualitasUdara(wilayah: e['wilayah'], status: e['status']);
+        _dataUdaraList.add(kualitasUdara);
+      }).toList();
+      _teks = "Caching Data";
+      await hiveService.addBoxes(_dataUdaraList, "kualitasUdara");
+      setBusy(false);
     }
   }
 }

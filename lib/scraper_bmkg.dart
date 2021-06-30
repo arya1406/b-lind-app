@@ -15,8 +15,10 @@ class UdaraService {
     var document = parse(response.body);
     List<Element> links = document.querySelectorAll('div.pm10');
     List looks = [];
+    List statusAll = [];
     List<Map<String, dynamic>> linkMap = [];
     List<Map<String, dynamic>> wilMap = [];
+    List<Map<String, dynamic>> statMap = [];
 
     var parseData;
     var statusData;
@@ -33,46 +35,46 @@ class UdaraService {
       for (var j = 0; j < 24; j++) {
         var dataIndex = data.indexOf("['$j',");
         if (dataIndex == -1) {
+          if (parseData <= 50.0) {
+            statusData = 'Baik';
+
+            //print(statusData);
+          }
+          if (parseData > 50.0 && parseData <= 150) {
+            statusData = 'Sedang';
+            //print(statusData);
+          }
+          statusAll.add(statusData);
           break;
         }
         if (j >= 10) {
           var dataSub = data.substring(dataIndex + 7, dataIndex + 10);
           parseData = double.parse(dataSub);
           assert(parseData is double);
-          if (parseData <= 50.0) {
-            statusData = 'Baik';
-            //print(statusData);
-          }
-          if (parseData > 50.0 && parseData <= 150) {
-            statusData = 'Sedang';
-            //print(statusData);
-          }
-          print(parseData);
+          //print(parseData);
         } else {
           var dataSub = data.substring(dataIndex + 6, dataIndex + 9);
           parseData = double.parse(dataSub);
           assert(parseData is double);
-          if (parseData <= 50.0) {
-            statusData = 'Baik';
-            //print(statusData);
-          }
-          if (parseData > 50.0 && parseData <= 150) {
-            statusData = 'Sedang';
-            //print(statusData);
-          }
         }
       }
     }
     for (var look in looks) {
       wilMap.add({'wilayah': look});
     }
-    print(wilMap);
+    for (var statusAlls in statusAll) {
+      statMap.add({'status': statusAlls});
+    }
+    //print(statusAll);
+    wilMap.addAll(statMap);
+    return wilMap;
   }
   //var data = linkMap[3]['script'];
   //var dataIndex = data.indexOf("['1',");
   //var dataSub = data.substring(dataIndex + 6, dataIndex + 11);
   //var dataPrint = dataIndex.toString() + '\n' + dataSub;
   //return print(dataPrint);
+
 }
 
 Future gempa() async {
