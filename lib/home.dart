@@ -55,6 +55,11 @@ class _HomePageState extends State<HomePage> {
   var gempaText = '';
   var udaraText = '';
   var nlp;
+  var isMedan = 'medan';
+  var isPangkalan = 'pangkalanbun';
+  var isKototabang = 'kototabang';
+  var isKemayoran = 'kemayoran';
+  var isCibeureum = 'cibeureum';
 
 //? Data cuaca dari DBase
   var isWilayah = '';
@@ -99,16 +104,25 @@ class _HomePageState extends State<HomePage> {
     var cuaca = newText.contains(isCuaca);
     var gempa = newText.contains(isGempa);
     var udara = newText.contains(isUdara);
-    var wilayah = newText.contains(isWilayah);
+    var wilayah1 = newText.contains(isMedan);
+    var wilayah2 = newText.contains(isKototabang);
+    var wilayah3 = newText.contains(isKemayoran);
+    var wilayah4 = newText.contains(isCibeureum);
+    var wilayah5 = newText.contains(isPangkalan);
     var sekarang = newText.contains(isSekarang);
     var besok = newText.contains(isBesok);
     var hariIni = newText.contains(isHari);
 
     cuacaText =
-        ("Cuaca di jambi Pada pukul 13 hari ini, cuaca hujan dengan suhu 27 derajat, kelembaban 90 dan kecepatan angin 3 kilometer perjam ke tenggara");
+        ("Cuaca di jambi Pada pukul 13 hari ini, cuaca berawan dengan suhu 28 derajat, kelembaban 90 % dan kecepatan angin 3 meter perdetik ke tenggara");
     gempaText =
-        ("gempa berkekuatan 5.5 Magnitudo\npada 10 November jam 07.52\ndi 121 kilometer baratdaya Tanggamus-Lampung. \n525 kilometer dari anda\nTidak berpotensi Tsunami");
-    udaraText = ("Kualitas Udara di wilayah\nKemayoran Kurang Sehat");
+        ("gempa berkekuatan 5.3 Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami");
+    var udaraMedanText = ("Kualitas Udara di wilayah $isMedan baik");
+    var udaraPangkalanText = ("Kualitas Udara di wilayah $isPangkalan baik");
+    var udaraKotoText = ("Kualitas Udara di wilayah $isKototabang baik");
+    var udaraKemayoranText = ("Kualitas Udara di wilayah $isKemayoran sedang");
+    var udaraCibeureumText = ("Kualitas Udara di wilayah $isCibeureum baik");
+    var noData = ("maaf, data di kota anda tidak tersedia");
 
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
@@ -119,8 +133,22 @@ class _HomePageState extends State<HomePage> {
     if (gempa) {
       await flutterTts.speak(gempaText);
     }
-    if (udara) {
-      await flutterTts.speak(udaraText);
+    if (udara && wilayah1) {
+      await flutterTts.speak(udaraMedanText);
+    }
+    if (udara && wilayah2) {
+      await flutterTts.speak(udaraKotoText);
+    }
+    if (udara && wilayah3) {
+      await flutterTts.speak(udaraKemayoranText);
+    }
+    if (udara && wilayah4) {
+      await flutterTts.speak(udaraCibeureumText);
+    }
+    if (udara && wilayah5) {
+      await flutterTts.speak(udaraPangkalanText);
+    } else {
+      await flutterTts.speak(noData);
     }
   }
 

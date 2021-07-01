@@ -77,46 +77,130 @@ class UdaraService {
 
 }
 
-Future gempa() async {
-  Xml2Json xml2json = new Xml2Json();
-  try {
-    var client = Client();
-    Response response = await client.get(
-        Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
-    xml2json.parse(response.body);
-    var jsondata = xml2json.toGData();
-    var data = json.decode(jsondata);
-    for (var i = 0; i < data['Infogempa']['gempa'].length; i++) {
-      print(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+class GempaService {
+  Future gempa() async {
+    Xml2Json xml2json = new Xml2Json();
+    try {
+      var client = Client();
+      Response response = await client.get(
+          Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
+      xml2json.parse(response.body);
+      var jsondata = xml2json.toGData();
+      var data = json.decode(jsondata);
+      for (var i = 0; i < 5; i++) {
+        print(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+        print(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
+        print(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
+        print(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
+        print(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
+        print(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
+        print(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
+        print('\n');
+      }
+      //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+    } catch (e) {
+      print(e);
     }
-    //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
-  } catch (e) {
-    print(e);
   }
 }
 
-Future cuaca() async {
-  Xml2Json xml2json = new Xml2Json();
-  try {
-    var client = Client();
-    Response response = await client.get(Uri.parse(
-        'https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-Indonesia.xml'));
-    xml2json.parse(response.body);
-    var jsondata = xml2json.toGData();
-    var data = json.decode(jsondata);
-    for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
-      print(data['data']['forecast']['area'][i]['name'][0][r'$t']);
-      for (var j = 0;
-          j < data['data']['forecast']['area'][i]['parameter'].length;
-          j++) {
-        print(
-            data['data']['forecast']['area'][i]['parameter'][j]['description']);
+class CuacaService {
+  Future cuaca() async {
+    Xml2Json xml2json = new Xml2Json();
+    var parameter = '';
+    var val_parameter = '';
+    var isHum = 'Humidity';
+    var isHumMax = 'Max humidity';
+    var isHumMin = 'Min humidity';
+    var isWeather = 'Weather';
+    var isTemp = 'Temperature';
+    var isTempMax = 'Max temperature';
+    var isTempMin = 'Min temperature';
+    var isWindSpeed = 'Wind speed';
+    var isWindDir = 'Wind direction';
+    try {
+      var client = Client();
+      Response response = await client.get(Uri.parse(
+          'https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-Indonesia.xml'));
+      xml2json.parse(response.body);
+      var jsondata = xml2json.toGData();
+      var data = json.decode(jsondata);
+
+      for (var i = 0; i < 4; i++) {
+        print(data['data']['forecast']['area'][i]['name'][0][r'$t']);
+        for (var j = 0;
+            j < data['data']['forecast']['area'][i]['parameter'].length;
+            j++) {
+          parameter = data['data']['forecast']['area'][i]['parameter'][j]
+              ['description'];
+          if (parameter == isWeather) {
+            print(parameter);
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][2]['value'][r'$t'];
+            if (val_parameter == '0') {
+              val_parameter = 'Cerah';
+            }
+            if (val_parameter == '1') {
+              val_parameter = 'Cerah Berawan';
+            }
+            if (val_parameter == '2') {
+              val_parameter = 'Cerah Berawan';
+            }
+            if (val_parameter == '3') {
+              val_parameter = 'Berawan';
+            }
+            if (val_parameter == '60') {
+              val_parameter = 'Cerah';
+            }
+            print(val_parameter);
+          }
+          if (parameter == isTempMax) {
+            print(parameter);
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][0][r'$t'];
+            print(val_parameter);
+          }
+          if (parameter == isTempMin) {
+            print(parameter);
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][0][r'$t'];
+            print(val_parameter);
+          }
+          if (parameter == isHumMin) {
+            print(parameter);
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][r'$t'];
+            print(val_parameter);
+          }
+          if (parameter == isHumMax) {
+            print(parameter);
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][r'$t'];
+            print(val_parameter);
+          }
+          if (parameter == isTemp) {
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][0][r'$t'];
+          }
+          if (parameter == isWindDir) {
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][1][r'$t'];
+          }
+          if (parameter == isWindSpeed) {
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][3][r'$t'];
+          }
+          if (parameter == isHum) {
+            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
+                ['timerange'][0]['value'][r'$t'];
+          }
+        }
+        print('\n');
       }
+      //print(data['data']['forecast']['area'][0]['parameter'][0]['timerange'][0]['value'][r'$t']);
+      //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+    } catch (e) {
+      print(e);
     }
-    print(data['data']['forecast']['area'][0]['parameter'][0]['timerange'][0]
-        ['value'][r'$t']);
-    //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
-  } catch (e) {
-    print(e);
   }
 }
