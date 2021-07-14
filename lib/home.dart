@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
     var hariIni = newText.contains(isHari);
 
     cuacaText =
-        ("Cuaca di jambi Pada pukul 13 hari ini, cuaca berawan dengan suhu 28 derajat, kelembaban 90 % dan kecepatan angin 3 meter perdetik ke tenggara");
+        ("Cuaca Pada pukul 13 hari ini, cuaca berawan dengan suhu 28 derajat, kelembaban 90 % dan kecepatan angin 3 meter perdetik ke tenggara");
     gempaText =
         ("gempa berkekuatan 5.3 Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami");
     var udaraMedanText = ("Kualitas Udara di wilayah $isMedan baik");
@@ -147,7 +147,8 @@ class _HomePageState extends State<HomePage> {
     }
     if (udara && wilayah5) {
       await flutterTts.speak(udaraPangkalanText);
-    } else {
+    }
+    if (udara) {
       await flutterTts.speak(noData);
     }
   }

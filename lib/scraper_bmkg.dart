@@ -80,6 +80,7 @@ class UdaraService {
 class GempaService {
   Future gempa() async {
     Xml2Json xml2json = new Xml2Json();
+    List dataGempa = [];
     try {
       var client = Client();
       Response response = await client.get(
@@ -88,16 +89,16 @@ class GempaService {
       var jsondata = xml2json.toGData();
       var data = json.decode(jsondata);
       for (var i = 0; i < 5; i++) {
-        print(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
-        print(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
-        print(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
-        print(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
-        print(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
-        print(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
-        print(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
-        print('\n');
+        dataGempa.add(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
       }
-      //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+      print(dataGempa);
+      //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
     } catch (e) {
       print(e);
     }
@@ -198,7 +199,7 @@ class CuacaService {
         print('\n');
       }
       //print(data['data']['forecast']['area'][0]['parameter'][0]['timerange'][0]['value'][r'$t']);
-      //print(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+      //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
     } catch (e) {
       print(e);
     }

@@ -1,11 +1,54 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:xml2json/xml2json.dart';
+import 'scraper_bmkg.dart';
+import 'main.dart';
 
 class GempaPage extends StatefulWidget {
   @override
   _GempaPageState createState() => _GempaPageState();
 }
 
+class GempaService {
+  call() async {
+    Xml2Json xml2json = new Xml2Json();
+    List dataGempa = [];
+    try {
+      var client = Client();
+      Response response = await client.get(
+          Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
+      xml2json.parse(response.body);
+      var jsondata = xml2json.toGData();
+      var data = json.decode(jsondata);
+      for (var i = 0; i < 5; i++) {
+        dataGempa.add(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
+        dataGempa.add(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
+      }
+      //print(dataGempa);
+      //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+    } catch (e) {
+      print(e);
+    }
+    return dataGempa;
+  }
+}
+
 class _GempaPageState extends State<GempaPage> {
+  var gempaGet = GempaService();
+
+  @override
+  void initState() {
+    super.initState();
+    gempaGet();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,10 +60,10 @@ class _GempaPageState extends State<GempaPage> {
             backgroundColor: Color(0xfffffc00),
             title: Container(
               alignment: Alignment.center,
-              child: Text('gEMPA',
+              child: Text('GEMPA',
                   style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'Museo Moderno',
+                      fontFamily: 'fira sans',
                       fontSize: 45,
                       fontWeight: FontWeight.bold)),
             ),
@@ -43,12 +86,14 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 5.5 Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan' +
+                          dataGempa[3] +
+                          ' Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Museo Moderno',
+                          fontFamily: 'fira sans',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -73,7 +118,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Museo Moderno',
+                          fontFamily: 'fira sans',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -98,7 +143,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Museo Moderno',
+                          fontFamily: 'fira sans',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -123,7 +168,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Museo Moderno',
+                          fontFamily: 'fira sans',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -148,7 +193,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'Museo Moderno',
+                          fontFamily: 'fira sans',
                           fontWeight: FontWeight.bold)),
                 ),
               ),

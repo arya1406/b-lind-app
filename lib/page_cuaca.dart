@@ -22,7 +22,7 @@ class _PageCuacaState extends State<PageCuaca> {
               child: Text('CUACA',
                   style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'Museo Moderno',
+                      fontFamily: 'fira sans',
                       fontSize: 45,
                       fontWeight: FontWeight.bold)),
             ),
@@ -49,7 +49,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -68,7 +68,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -87,7 +87,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -106,7 +106,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -125,7 +125,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -144,7 +144,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -163,7 +163,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -182,7 +182,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -201,7 +201,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -220,7 +220,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -239,7 +239,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -258,7 +258,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -277,7 +277,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -296,7 +296,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -315,7 +315,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -334,7 +334,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -353,7 +353,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -372,7 +372,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -391,7 +391,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -410,7 +410,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -429,7 +429,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -448,7 +448,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -467,7 +467,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -486,7 +486,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -505,7 +505,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -524,7 +524,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -543,7 +543,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -562,7 +562,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -581,7 +581,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -600,7 +600,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -619,7 +619,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -638,7 +638,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -657,7 +657,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -676,7 +676,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'Museo Moderno',
+                        fontFamily: 'fira sans',
                         fontWeight: FontWeight.bold)),
               ),
             ),
