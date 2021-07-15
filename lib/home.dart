@@ -6,7 +6,6 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:b_lind/button_bahasa.dart';
 import 'package:b_lind/button_cuaca.dart';
 import 'package:b_lind/button_gempa.dart';
-
 import 'button_udara.dart';
 
 bool isPressed = false;
@@ -148,8 +147,20 @@ class _HomePageState extends State<HomePage> {
     if (udara && wilayah5) {
       await flutterTts.speak(udaraPangkalanText);
     }
-    if (udara) {
-      await flutterTts.speak(noData);
+    if (udara && !wilayah1) {
+      await flutterTts.speak(udaraMedanText);
+    }
+    if (udara && !wilayah2) {
+      await flutterTts.speak(udaraKotoText);
+    }
+    if (udara && !wilayah3) {
+      await flutterTts.speak(udaraKemayoranText);
+    }
+    if (udara && !wilayah4) {
+      await flutterTts.speak(udaraCibeureumText);
+    }
+    if (udara && !wilayah5) {
+      await flutterTts.speak(udaraPangkalanText);
     }
   }
 

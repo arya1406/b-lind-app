@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:b_lind/home.dart';
 import 'dart:async';
 
-import 'home.dart';
+import 'tutorialPage.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var duration = const Duration(seconds: 2);
     return Timer(duration, () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return HomePage();
+        return TutorialPage();
       }));
     });
   }

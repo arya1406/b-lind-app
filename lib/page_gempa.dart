@@ -86,9 +86,7 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan' +
-                          dataGempa[3] +
-                          ' Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
