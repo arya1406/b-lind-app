@@ -120,18 +120,21 @@ class _HomePageState extends State<HomePage> {
     var hariIni = newText.contains(isHari);
 
     cuacaText =
-        ('Besok pagi \ncuaca kabut dengan suhu 24 derajat, kelembaban 100% dan kecepatan angin 10 kilometer perjam ke tenggara');
+        ('pagi hari \ncuaca kabut dengan suhu 24 derajat, kelembaban 100% dan kecepatan angin 10 kilometer perjam ke tenggara');
     gempaText = ('gempa berkekuatan ' +
-        widget.dataGempa[4].toString() +
-        ' Magnitude\n pada ' +
-        widget.dataGempa[0].toString() +
+        widget.dataGempa[0][0].toString() +
+        ' Magnitudo, pada ' +
+        widget.dataGempa[0][1].toString() +
         ' jam ' +
-        widget.dataGempa[1].toString() +
-        ' \n di  ' +
-        widget.dataGempa[5].toString() +
-        '. \n 2550 kilometer dari anda \n  ' +
-        widget.dataGempa[6].toString() +
-        '');
+        widget.dataGempa[0][2].toString().substring(0, 5) +
+        widget.dataGempa[0][2].toString().substring(9) +
+        ',di  ' +
+        widget.dataGempa[0][3].toString().substring(0, 6) +
+        ' ' +
+        widget.dataGempa[0][3].toString().substring(6) +
+        widget.dataGempa[0][4].toString().substring(0, 6) +
+        widget.dataGempa[0][4].toString().substring(6) +
+        ',');
     var udaraMedanText = ("Kualitas Udara di wilayah $isMedan baik");
     var udaraPangkalanText = ("Kualitas Udara di wilayah $isPangkalan baik");
     var udaraKotoText = ("Kualitas Udara di wilayah $isKototabang baik");

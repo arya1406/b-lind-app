@@ -33,7 +33,7 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
     teksCuaca1 =
-        'Besok pagi \ncuaca cerah berawan dengan suhu 24 derajat, kelembaban 85% dan kecepatan angin 30 kilometer perjam ke timur';
+        'Pagi hari \ncuaca cerah berawan dengan suhu 24 derajat, kelembaban 85% dan kecepatan angin 30 kilometer perjam ke timur';
     await flutterTts.speak(teksCuaca1);
   }
 
@@ -42,8 +42,8 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
     teksCuaca2 =
-        'Besok siang\ncuaca hujan ringan dengan suhu 30 derajat, kelembaban 65% dan kecepatan angin 20 kilometer perjam ke timur';
-    await flutterTts.speak(teksCuaca1);
+        'Siang hari\ncuaca hujan ringan dengan suhu 30 derajat, kelembaban 65% dan kecepatan angin 20 kilometer perjam ke timur';
+    await flutterTts.speak(teksCuaca2);
   }
 
   Future _speakCuaca3() async {
@@ -51,7 +51,7 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
     teksCuaca3 =
-        'Lusa pagi \ncuaca hujan ringan dengan suhu 26 derajat, kelembaban 85% dan kecepatan angin 10 kilometer perjam ke tenggara';
+        'Besok pagi \ncuaca hujan ringan dengan suhu 26 derajat, kelembaban 85% dan kecepatan angin 10 kilometer perjam ke tenggara';
     await flutterTts.speak(teksCuaca3);
   }
 
@@ -99,7 +99,7 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
                     },
                     child: ExcludeSemantics(
                       child: Text(
-                          'Besok pagi \ncuaca cerah berawan dengan suhu 24 derajat, kelembaban 85% dan kecepatan angin 30 kilometer perjam ke timur',
+                          'Pagi hari \ncuaca cerah berawan dengan suhu 24 derajat, kelembaban 85% dan kecepatan angin 30 kilometer perjam ke timur',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -126,14 +126,16 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
                     onTap: () {
                       _speakCuaca2();
                     },
-                    child: Text(
-                        'Besok siang\ncuaca hujan ringan dengan suhu 30 derajat, kelembaban 65% dan kecepatan angin 20 kilometer perjam ke timur',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'fauna one',
-                            fontWeight: FontWeight.bold)),
+                    child: ExcludeSemantics(
+                      child: Text(
+                          'Siang hari\ncuaca hujan ringan dengan suhu 30 derajat, kelembaban 65% dan kecepatan angin 20 kilometer perjam ke timur',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontFamily: 'fauna one',
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                 ),
               ),
@@ -151,14 +153,16 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
                   ),
                   child: InkWell(
                     onTap: () {},
-                    child: Text(
-                        'Besok malam\ncuaca cerah berawan dengan suhu 27 derajat, kelembaban 75% dan kecepatan angin 10 kilometer perjam ke tenggara',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'fauna one',
-                            fontWeight: FontWeight.bold)),
+                    child: ExcludeSemantics(
+                      child: Text(
+                          'Malam hari\ncuaca cerah berawan dengan suhu 27 derajat, kelembaban 75% dan kecepatan angin 10 kilometer perjam ke tenggara',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontFamily: 'fauna one',
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                 ),
               ),
@@ -178,8 +182,35 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
                     onTap: () {
                       _speakCuaca3();
                     },
+                    child: ExcludeSemantics(
+                      child: Text(
+                          'Besok pagi \ncuaca hujan ringan dengan suhu 26 derajat, kelembaban 85% dan kecepatan angin 10 kilometer perjam ke tenggara',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontFamily: 'fauna one',
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ),
+              ),
+              Semantics(
+                container: true,
+                label: 'klik dua kali untuk informasi',
+                child: Container(
+                  margin:
+                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                  padding: EdgeInsets.all(13),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(13),
+                    color: Color(0xfffffc00),
+                    border: Border.all(color: Colors.black, width: 1),
+                  ),
+                  child: InkWell(
+                    onTap: () {},
                     child: Text(
-                        'Lusa pagi \ncuaca hujan ringan dengan suhu 26 derajat, kelembaban 85% dan kecepatan angin 10 kilometer perjam ke tenggara',
+                        'Besok siang  \ncuaca berawan dengan suhu 30 derajat, kelembaban 70% dan kecepatan angin 20 kilometer perjam ke tenggara',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -204,32 +235,7 @@ class _BaliInfoPageState extends State<BaliInfoPage> {
                   child: InkWell(
                     onTap: () {},
                     child: Text(
-                        'Lusa siang  \ncuaca berawan dengan suhu 30 derajat, kelembaban 70% dan kecepatan angin 20 kilometer perjam ke tenggara',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'fauna one',
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-              Semantics(
-                container: true,
-                label: 'klik dua kali untuk informasi',
-                child: Container(
-                  margin:
-                      EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
-                  padding: EdgeInsets.all(13),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    color: Color(0xfffffc00),
-                    border: Border.all(color: Colors.black, width: 1),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Text(
-                        'Lusa malam \ncuaca berawan dengan suhu 28 derajat, kelembaban 80% dan kecepatan angin 20 kilometer perjam ke tenggara',
+                        'besok malam \ncuaca berawan dengan suhu 28 derajat, kelembaban 80% dan kecepatan angin 20 kilometer perjam ke tenggara',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,

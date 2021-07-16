@@ -83,19 +83,21 @@ class _UdaraPageState extends State<UdaraPage> {
                                       .toString();
                               await flutterTts.speak(teksUdara);
                             },
-                            child: Text(
-                                'Kualitas Udara di wilayah \n ' +
-                                    widget.dataUdara[index][0].toString() +
-                                    ' ' +
-                                    widget.dataUdara[index +
-                                            widget.dataUdara.length ~/ 2][0]
-                                        .toString(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 21,
-                                    fontFamily: 'fauna one',
-                                    fontWeight: FontWeight.bold)),
+                            child: ExcludeSemantics(
+                              child: Text(
+                                  'Kualitas Udara di wilayah \n ' +
+                                      widget.dataUdara[index][0].toString() +
+                                      ' ' +
+                                      widget.dataUdara[index +
+                                              widget.dataUdara.length ~/ 2][0]
+                                          .toString(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 21,
+                                      fontFamily: 'fauna one',
+                                      fontWeight: FontWeight.bold)),
+                            ),
                           ),
                         ),
                       ),

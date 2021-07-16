@@ -83,36 +83,43 @@ class _GempaPageState extends State<GempaPage> {
                               widget.dataGempa[index][2]
                                   .toString()
                                   .substring(9) +
-                              ', di  ' +
+                              ',di  ' +
                               widget.dataGempa[index][3]
                                   .toString()
-                                  .substring(0, 16) +
+                                  .substring(0, 6) +
+                              ' ' +
                               widget.dataGempa[index][3]
                                   .toString()
-                                  .substring(16) +
-                              ' ,  ' +
-                              widget.dataGempa[index][4].toString() +
-                              '';
+                                  .substring(6) +
+                              widget.dataGempa[index][4]
+                                  .toString()
+                                  .substring(0, 6) +
+                              widget.dataGempa[index][4]
+                                  .toString()
+                                  .substring(6) +
+                              ',';
                           await flutterTts.speak(teksGempa);
                         },
-                        child: Text(
-                            'gempa berkekuatan ' +
-                                widget.dataGempa[index][0].toString() +
-                                ' Magnitudo,\n pada ' +
-                                widget.dataGempa[index][1].toString() +
-                                ' jam ' +
-                                widget.dataGempa[index][2].toString() +
-                                ' \n di  ' +
-                                widget.dataGempa[index][3].toString() +
-                                ' \n  ' +
-                                widget.dataGempa[index][4].toString() +
-                                '',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontFamily: 'fauna one',
-                                fontWeight: FontWeight.bold)),
+                        child: ExcludeSemantics(
+                          child: Text(
+                              'gempa berkekuatan ' +
+                                  widget.dataGempa[index][0].toString() +
+                                  ' Magnitudo,\n pada ' +
+                                  widget.dataGempa[index][1].toString() +
+                                  ' jam ' +
+                                  widget.dataGempa[index][2].toString() +
+                                  ' \n di  ' +
+                                  widget.dataGempa[index][3].toString() +
+                                  ' \n  ' +
+                                  widget.dataGempa[index][4].toString() +
+                                  '',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontFamily: 'fauna one',
+                                  fontWeight: FontWeight.bold)),
+                        ),
                       ),
                     ),
                   ),
