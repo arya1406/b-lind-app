@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+
+import 'home.dart';
 
 class UdaraPage extends StatefulWidget {
   final List dataUdara;
@@ -10,6 +14,21 @@ class UdaraPage extends StatefulWidget {
 }
 
 class _UdaraPageState extends State<UdaraPage> {
+  String bahasa = 'id-ID';
+  String teksUdara;
+  dynamic languages;
+  String language;
+  double volume = 0.5;
+  double pitch = 1.0;
+  double rate = 0.5;
+  String newVoiceText;
+  TtsState ttsState = TtsState.stopped;
+
+  get isPlaying => ttsState == TtsState.playing;
+  get isStopped => ttsState == TtsState.stopped;
+  stt.SpeechToText speech = stt.SpeechToText();
+  final FlutterTts flutterTts = FlutterTts();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,7 +67,22 @@ class _UdaraPageState extends State<UdaraPage> {
                             border: Border.all(color: Colors.black, width: 1),
                           ),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () async {
+                              speech.stop();
+                              flutterTts.setLanguage(bahasa);
+                              await flutterTts.setPitch(pitch);
+                              teksUdara = 'Kualitas Udara di wilayah ' +
+                                  widget.dataUdara[index][0]
+                                      .toString()
+                                      .substring(0, 4) +
+                                  widget.dataUdara[index][0]
+                                      .toString()
+                                      .substring(4) +
+                                  widget.dataUdara[index +
+                                          widget.dataUdara.length ~/ 2][0]
+                                      .toString();
+                              await flutterTts.speak(teksUdara);
+                            },
                             child: Text(
                                 'Kualitas Udara di wilayah \n ' +
                                     widget.dataUdara[index][0].toString() +

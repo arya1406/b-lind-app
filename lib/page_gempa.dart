@@ -30,12 +30,6 @@ class _GempaPageState extends State<GempaPage> {
   stt.SpeechToText speech = stt.SpeechToText();
   final FlutterTts flutterTts = FlutterTts();
 
-  Future _speakGempa() async {}
-
-  Future _stop() async {
-    await flutterTts.stop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
