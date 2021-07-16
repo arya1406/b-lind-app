@@ -5,6 +5,11 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class TutorialPage extends StatefulWidget {
+  final List dataGempa;
+  final List dataUdara;
+  TutorialPage({Key key, @required this.dataGempa, this.dataUdara})
+      : super(key: key);
+
   @override
   _TutorialPageState createState() => _TutorialPageState();
 }
@@ -117,7 +122,10 @@ class _TutorialPageState extends State<TutorialPage> {
                                 _stop();
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return HomePage();
+                                  return HomePage(
+                                    dataGempa: widget.dataGempa,
+                                    dataUdara: widget.dataUdara,
+                                  );
                                 }));
                               },
                               child: Text('SKIP',

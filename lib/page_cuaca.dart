@@ -1,4 +1,5 @@
 import 'package:b_lind/Aceh/Aceh_kab_page.dart';
+import 'package:b_lind/Bali/Bali_kab_page.dart';
 import 'package:flutter/material.dart';
 //import 'scraping_test';
 
@@ -22,7 +23,7 @@ class _PageCuacaState extends State<PageCuaca> {
               child: Text('CUACA',
                   style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'fira sans',
+                      fontFamily: 'fauna one',
                       fontSize: 45,
                       fontWeight: FontWeight.bold)),
             ),
@@ -49,7 +50,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -62,13 +63,17 @@ class _PageCuacaState extends State<PageCuaca> {
                 border: Border.all(color: Colors.black, width: 1),
               ),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return BaliKabPage();
+                  }));
+                },
                 child: Text('Provinsi \nBali',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -87,7 +92,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -106,7 +111,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -125,7 +130,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -144,7 +149,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -163,7 +168,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -182,7 +187,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -201,7 +206,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -220,7 +225,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -239,7 +244,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -258,7 +263,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -277,7 +282,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -296,7 +301,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -315,7 +320,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -334,7 +339,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -353,7 +358,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -372,7 +377,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -391,7 +396,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -410,7 +415,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -429,7 +434,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -448,7 +453,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -467,7 +472,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -486,7 +491,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -505,7 +510,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -524,7 +529,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -543,7 +548,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -562,7 +567,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -581,7 +586,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -600,7 +605,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -619,7 +624,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -638,7 +643,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -657,7 +662,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -676,7 +681,7 @@ class _PageCuacaState extends State<PageCuaca> {
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontWeight: FontWeight.bold)),
               ),
             ),

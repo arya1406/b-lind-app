@@ -22,7 +22,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                 child: Text('CUACA',
                     style: TextStyle(
                         color: Colors.black,
-                        fontFamily: 'fira sans',
+                        fontFamily: 'fauna one',
                         fontSize: 45,
                         fontWeight: FontWeight.bold)),
               ),
@@ -54,7 +54,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 23,
-                            fontFamily: 'fira sans',
+                            fontFamily: 'fauna one',
                             fontWeight: FontWeight.bold)),
                   ),
                 ),
@@ -75,7 +75,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -95,7 +95,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -109,13 +109,18 @@ class _BaliKabPageState extends State<BaliKabPage> {
                   border: Border.all(color: Colors.black, width: 1),
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return BaliInfoPage();
+                    }));
+                  },
                   child: Text('Kabupaten \nGianyar',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -135,7 +140,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -155,7 +160,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -175,7 +180,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -195,7 +200,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -215,7 +220,7 @@ class _BaliKabPageState extends State<BaliKabPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),

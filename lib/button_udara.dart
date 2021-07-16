@@ -4,6 +4,9 @@ import 'home.dart';
 import 'package:flutter/material.dart';
 
 class ButtonUdara extends StatefulWidget {
+  final List dataUdara;
+  ButtonUdara({Key key, @required this.dataUdara}) : super(key: key);
+
   @override
   _ButtonUdaraState createState() => _ButtonUdaraState();
 }
@@ -42,7 +45,7 @@ class _ButtonUdaraState extends State<ButtonUdara> {
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return UdaraPage();
+                return UdaraPage(dataUdara: widget.dataUdara);
               }));
             },
             child: Column(

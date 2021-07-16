@@ -14,6 +14,10 @@ double heightButton = 300;
 double widthButton = 165;
 
 class HomePage extends StatefulWidget {
+  final List dataGempa;
+  final List dataUdara;
+  HomePage({Key key, @required this.dataGempa, this.dataUdara})
+      : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -55,6 +59,7 @@ class _HomePageState extends State<HomePage> {
   var gempaText = '';
   var udaraText = '';
   var nlp;
+  var isJambi = 'jambi';
   var isMedan = 'medan';
   var isPangkalan = 'pangkalanbun';
   var isKototabang = 'kototabang';
@@ -101,12 +106,13 @@ class _HomePageState extends State<HomePage> {
   Future _speak() async {
     speech.stop();
     newText = _text.toLowerCase();
+    var polusi = newText.contains(isPolusi);
     var cuaca = newText.contains(isCuaca);
     var gempa = newText.contains(isGempa);
     var udara = newText.contains(isUdara);
     var wilayah1 = newText.contains(isMedan);
     var wilayah2 = newText.contains(isKototabang);
-    var wilayah3 = newText.contains(isKemayoran);
+    var wilayah3 = newText.contains(isJambi);
     var wilayah4 = newText.contains(isCibeureum);
     var wilayah5 = newText.contains(isPangkalan);
     var sekarang = newText.contains(isSekarang);
@@ -114,13 +120,22 @@ class _HomePageState extends State<HomePage> {
     var hariIni = newText.contains(isHari);
 
     cuacaText =
-        ("Cuaca Pada pukul 13 hari ini, cuaca berawan dengan suhu 28 derajat, kelembaban 90 % dan kecepatan angin 3 meter perdetik ke tenggara");
-    gempaText =
-        ("gempa berkekuatan 5.3 Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami");
+        ('Besok pagi \ncuaca kabut dengan suhu 24 derajat, kelembaban 100% dan kecepatan angin 10 kilometer perjam ke tenggara');
+    gempaText = ('gempa berkekuatan ' +
+        widget.dataGempa[4].toString() +
+        ' Magnitude\n pada ' +
+        widget.dataGempa[0].toString() +
+        ' jam ' +
+        widget.dataGempa[1].toString() +
+        ' \n di  ' +
+        widget.dataGempa[5].toString() +
+        '. \n 2550 kilometer dari anda \n  ' +
+        widget.dataGempa[6].toString() +
+        '');
     var udaraMedanText = ("Kualitas Udara di wilayah $isMedan baik");
     var udaraPangkalanText = ("Kualitas Udara di wilayah $isPangkalan baik");
     var udaraKotoText = ("Kualitas Udara di wilayah $isKototabang baik");
-    var udaraKemayoranText = ("Kualitas Udara di wilayah $isKemayoran sedang");
+    var udaraJambiText = ("Kualitas Udara di wilayah $isJambi sedang");
     var udaraCibeureumText = ("Kualitas Udara di wilayah $isCibeureum baik");
     var noData = ("maaf, data di kota anda tidak tersedia");
 
@@ -140,7 +155,7 @@ class _HomePageState extends State<HomePage> {
       await flutterTts.speak(udaraKotoText);
     }
     if (udara && wilayah3) {
-      await flutterTts.speak(udaraKemayoranText);
+      await flutterTts.speak(noData);
     }
     if (udara && wilayah4) {
       await flutterTts.speak(udaraCibeureumText);
@@ -148,19 +163,19 @@ class _HomePageState extends State<HomePage> {
     if (udara && wilayah5) {
       await flutterTts.speak(udaraPangkalanText);
     }
-    if (udara && !wilayah1) {
+    if (polusi && wilayah1) {
       await flutterTts.speak(udaraMedanText);
     }
-    if (udara && !wilayah2) {
+    if (polusi && wilayah2) {
       await flutterTts.speak(udaraKotoText);
     }
-    if (udara && !wilayah3) {
-      await flutterTts.speak(udaraKemayoranText);
-    }
-    if (udara && !wilayah4) {
+    //if (polusi && wilayah3) {
+    //  await flutterTts.speak(udaraKemayoranText);
+    //}
+    if (polusi && wilayah4) {
       await flutterTts.speak(udaraCibeureumText);
     }
-    if (udara && !wilayah5) {
+    if (polusi && wilayah5) {
       await flutterTts.speak(udaraPangkalanText);
     }
   }
@@ -302,11 +317,19 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [ButtonOption(), ButtonUdara()],
+                    children: [
+                      ButtonOption(),
+                      ButtonUdara(dataUdara: widget.dataUdara)
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [ButtonGempa(), ButtonCuaca()],
+                    children: [
+                      ButtonGempa(
+                        dataGempa: widget.dataGempa,
+                      ),
+                      ButtonCuaca()
+                    ],
                   )
                 ],
               ),

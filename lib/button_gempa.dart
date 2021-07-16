@@ -1,45 +1,17 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:b_lind/page_gempa.dart';
-import 'package:flutter/material.dart';
 import 'package:b_lind/home.dart';
 import 'package:http/http.dart';
 import 'package:xml2json/xml2json.dart';
 
 class ButtonGempa extends StatefulWidget {
+  final List dataGempa;
+  ButtonGempa({Key key, @required this.dataGempa}) : super(key: key);
+
   @override
   _ButtonGempaState createState() => _ButtonGempaState();
-}
-
-class GempaService {
-  final List dataGempa;
-
-  Future gempa() async {
-    Xml2Json xml2json = new Xml2Json();
-    try {
-      var client = Client();
-      Response response = await client.get(
-          Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
-      xml2json.parse(response.body);
-      var jsondata = xml2json.toGData();
-      var data = json.decode(jsondata);
-      for (var i = 0; i < 5; i++) {
-        dataGempa.add(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
-      }
-
-      //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  GempaService(this.dataGempa);
 }
 
 class _ButtonGempaState extends State<ButtonGempa> {
@@ -75,7 +47,13 @@ class _ButtonGempaState extends State<ButtonGempa> {
                 border: Border.all(color: Colors.black, width: 1.5)),
             child: InkWell(
               onTap: () async {
-                _sendDataGempa(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GempaPage(
+                        dataGempa: widget.dataGempa,
+                      ),
+                    ));
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -96,39 +74,4 @@ class _ButtonGempaState extends State<ButtonGempa> {
           ),
         ));
   }
-}
-
-void _sendDataGempa(BuildContext context) async {
-  Xml2Json xml2json = new Xml2Json();
-  List dataGempa = [];
-  try {
-    var client = Client();
-    Response response = await client.get(
-        Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
-    xml2json.parse(response.body);
-    var jsondata = xml2json.toGData();
-    var data = json.decode(jsondata);
-    for (var i = 0; i < 5; i++) {
-      dataGempa.add(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
-      dataGempa.add(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
-      dataGempa.add(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
-      dataGempa.add(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
-      dataGempa.add(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
-      dataGempa.add(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
-      dataGempa.add(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
-    }
-
-    //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
-  } catch (e) {
-    print(e);
-  }
-
-  List dataToSend = dataGempa;
-  Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => GempaPage(
-          dataGempa: dataToSend,
-        ),
-      ));
 }
