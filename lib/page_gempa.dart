@@ -1,54 +1,21 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:xml2json/xml2json.dart';
-import 'scraper_bmkg.dart';
+import 'button_gempa.dart';
+import 'home.dart';
 import 'main.dart';
 
 class GempaPage extends StatefulWidget {
+  final List dataGempa;
+  GempaPage({Key key, @required this.dataGempa}) : super(key: key);
+
   @override
   _GempaPageState createState() => _GempaPageState();
 }
 
-class GempaService {
-  call() async {
-    Xml2Json xml2json = new Xml2Json();
-    List dataGempa = [];
-    try {
-      var client = Client();
-      Response response = await client.get(
-          Uri.parse('https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.xml'));
-      xml2json.parse(response.body);
-      var jsondata = xml2json.toGData();
-      var data = json.decode(jsondata);
-      for (var i = 0; i < 5; i++) {
-        dataGempa.add(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Lintang'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Bujur'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
-        dataGempa.add(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
-      }
-      //print(dataGempa);
-      //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
-    } catch (e) {
-      print(e);
-    }
-    return dataGempa;
-  }
-}
-
 class _GempaPageState extends State<GempaPage> {
-  var gempaGet = GempaService();
-
-  @override
-  void initState() {
-    super.initState();
-    gempaGet();
-  }
-
+  //final List<GempaService> dataGempa;
+  //_GempaPageState({Key key, @required this.dataGempa});
+  //String data = widget.dataGempa;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -63,7 +30,7 @@ class _GempaPageState extends State<GempaPage> {
               child: Text('GEMPA',
                   style: TextStyle(
                       color: Colors.black,
-                      fontFamily: 'fira sans',
+                      fontFamily: 'fauna one',
                       fontSize: 45,
                       fontWeight: FontWeight.bold)),
             ),
@@ -86,12 +53,14 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan ' +
+                          widget.dataGempa[3].toString() +
+                          'Magnitude\npada 29 Juni jam 14.35\ndi 59 kilometer baratlaut TAHUNA KEP.SANGIHE SULUT. \n 2550 kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -111,12 +80,14 @@ class _GempaPageState extends State<GempaPage> {
                 child: InkWell(
                   onTap: () {},
                   child: Text(
-                      'gempa berkekuatan 5.1 Magnitude\npada 28 Juni jam 08.56\ndi 58 kilometer tenggara KAB-KUPANG-NTT. \n2464  kilometer dari anda\nTidak berpotensi Tsunami',
+                      'gempa berkekuatan ' +
+                          widget.dataGempa[3].toString() +
+                          ' Magnitude\npada 28 Juni jam 08.56\ndi 58 kilometer tenggara KAB-KUPANG-NTT. \n2464  kilometer dari anda\nTidak berpotensi Tsunami',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -141,7 +112,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -166,7 +137,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),
@@ -191,7 +162,7 @@ class _GempaPageState extends State<GempaPage> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                          fontFamily: 'fira sans',
+                          fontFamily: 'fauna one',
                           fontWeight: FontWeight.bold)),
                 ),
               ),

@@ -30,8 +30,12 @@ class _TutorialPageState extends State<TutorialPage> {
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
     teksTutorial =
-        "selamat datang di infoBMKG untuk tunanetra. aplikasi ini akan memudahkan anda untuk mendapatkan informasi prakiraan cuaca, gempa terkini diatas 5 magnitudo dan info kualitas udara. Halaman utama aplikasi terdapat tombol mikrofon, ketika tombol di klik akan timbul suara klik, kemudian anda bisa bertanya tentang seputar informasi cuaca, gempa dan kualitas udara, seperti, gempa yang barusan terjadi gimana. atau. gimana kualitas udara di wilayah medan. atau. cuaca hari ini gimana ?. aplikasi akan memberikan informasi yang anda minta dalam bentuk suara. jika anda menslide ke kiri layar, terdapat menu tombol informasi cuaca berdasarkan provinsi, tombol informasi gempa terkini, tombol informasi kualitas udara, berbentuk teks yang yang dapat dibaca oleh fitur Talkback. terdapat pula tombol untuk menukar bahasa pada aplikasi. Semoga aplikasi ini dapat membantu anda dalam mendapatkan informasi prakiraan cuaca, gempa bumi, dan kualitas udara. tekan tombol skip dibawah untuk masuk ke menu utama.";
+        "selamat datang di info B M K G untuk tunanetra. aplikasi ini akan memudahkan anda untuk mendapatkan informasi prakiraan cuaca, gempa terkini diatas 5 magnitudo dan info kualitas udara, Halaman utama aplikasi terdapat tombol mikrofon, ketika tombol di klik akan timbul suara klik, kemudian anda bisa bertanya tentang seputar informasi cuaca, gempa dan kualitas udara, seperti, gempa yang barusan terjadi gimana. atau. gimana kualitas udara di wilayah medan. atau. cuaca hari ini gimana ?. aplikasi akan memberikan informasi yang anda minta dalam bentuk suara. jika anda menslide ke kiri layar, terdapat menu tombol informasi cuaca berdasarkan provinsi, tombol informasi gempa terkini, tombol informasi kualitas udara, berbentuk teks yang dapat dibaca oleh fitur Talkback. terdapat pula tombol untuk menukar bahasa pada aplikasi. Semoga aplikasi ini dapat membantu anda dalam mendapatkan informasi prakiraan cuaca, gempa bumi, dan kualitas udara. tekan tombol skip dibawah untuk masuk ke menu utama.";
     await flutterTts.speak(teksTutorial);
+  }
+
+  Future _stop() async {
+    await flutterTts.stop();
   }
 
   @override
@@ -45,12 +49,17 @@ class _TutorialPageState extends State<TutorialPage> {
               backgroundColor: Color(0xfffffc00),
               title: Container(
                 alignment: Alignment.center,
-                child: Text('Tutorial',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'fauna one',
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold)),
+                child: Semantics(
+                  label: 'halaman tutorial',
+                  child: ExcludeSemantics(
+                    child: Text('Tutorial',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'fauna one',
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
               ),
             ),
           ),
@@ -61,7 +70,7 @@ class _TutorialPageState extends State<TutorialPage> {
               children: [
                 Semantics(
                   container: true,
-                  label: 'tombol putar suara tutorial aplikasi info BMKG',
+                  label: 'tombol tutorial aplikasi info BMKG',
                   child: Container(
                     height: MediaQuery.of(context).size.height / 3,
                     child: FittedBox(
@@ -74,6 +83,7 @@ class _TutorialPageState extends State<TutorialPage> {
                               const Duration(milliseconds: 100),
                           child: ExcludeSemantics(
                             child: FloatingActionButton(
+                                heroTag: 'btn1',
                                 backgroundColor: Color(0xfffffc00),
                                 onPressed: () {
                                   _speakTutor();
@@ -101,9 +111,11 @@ class _TutorialPageState extends State<TutorialPage> {
                               const Duration(milliseconds: 100),
                           child: ExcludeSemantics(
                             child: FloatingActionButton(
+                              heroTag: 'btn2',
                               backgroundColor: Color(0xfffffc00),
                               onPressed: () {
-                                Navigator.push(context,
+                                _stop();
+                                Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
                                   return HomePage();
                                 }));
