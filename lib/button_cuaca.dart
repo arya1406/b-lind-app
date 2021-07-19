@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'page_cuaca.dart';
 
 class ButtonCuaca extends StatefulWidget {
+  final List dataCuaca;
+  final List dataKota;
+  ButtonCuaca({Key key, @required this.dataCuaca, this.dataKota})
+      : super(key: key);
   @override
   _ButtonCuacaState createState() => _ButtonCuacaState();
 }
@@ -41,7 +45,10 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return PageCuaca();
+                return PageCuaca(
+                  dataCuaca: widget.dataCuaca,
+                  dataKota: widget.dataKota,
+                );
               }));
             },
             child: Column(

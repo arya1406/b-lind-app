@@ -114,17 +114,20 @@ class GempaService {
 class CuacaService {
   Future cuaca() async {
     Xml2Json xml2json = new Xml2Json();
-    var parameter = '';
-    var val_parameter = '';
-    var isHum = 'Humidity';
-    var isHumMax = 'Max humidity';
-    var isHumMin = 'Min humidity';
-    var isWeather = 'Weather';
-    var isTemp = 'Temperature';
-    var isTempMax = 'Max temperature';
-    var isTempMin = 'Min temperature';
-    var isWindSpeed = 'Wind speed';
-    var isWindDir = 'Wind direction';
+    List dataKota = [];
+    List<List<List<dynamic>>> listDataUdara =
+        List.generate(34, (i) => List.generate(7, (index) => []));
+    List waktuCuaca = [
+      '',
+      'Pagi hari',
+      'Siang hari',
+      'Malam hari',
+      '',
+      'Besok Pagi',
+      'Besok Siang',
+      'Besok Malam'
+    ];
+
     try {
       var client = Client();
       Response response = await client.get(Uri.parse(
@@ -132,80 +135,134 @@ class CuacaService {
       xml2json.parse(response.body);
       var jsondata = xml2json.toGData();
       var data = json.decode(jsondata);
+      var parameter;
 
-      for (var i = 0; i < 4; i++) {
-        print(data['data']['forecast']['area'][i]['name'][0][r'$t']);
-        for (var j = 0;
-            j < data['data']['forecast']['area'][i]['parameter'].length;
-            j++) {
-          parameter = data['data']['forecast']['area'][i]['parameter'][j]
-              ['description'];
-          if (parameter == isWeather) {
-            print(parameter);
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][2]['value'][r'$t'];
-            if (val_parameter == '0') {
-              val_parameter = 'Cerah';
+      for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
+        dataKota.add(data['data']['forecast']['area'][i]['name'][0][r'$t']);
+
+        for (var j = 0; j < 6; j++) {
+          for (var k = 1; k < 8; k++) {
+            if (k == 4) {
+              continue;
             }
-            if (val_parameter == '1') {
-              val_parameter = 'Cerah Berawan';
+
+            listDataUdara[i][j].add(waktuCuaca[k]);
+            parameter = data['data']['forecast']['area'][i]['parameter'][6]
+                ['timerange'][k]['value'][r'$t'];
+            if (parameter == '0') {
+              parameter = 'Cerah';
             }
-            if (val_parameter == '2') {
-              val_parameter = 'Cerah Berawan';
+            if (parameter == '1') {
+              parameter = 'Cerah Berawan';
             }
-            if (val_parameter == '3') {
-              val_parameter = 'Berawan';
+            if (parameter == '2') {
+              parameter = 'Cerah Berawan';
             }
-            if (val_parameter == '60') {
-              val_parameter = 'Cerah';
+            if (parameter == '3') {
+              parameter = 'Berawan';
             }
-            print(val_parameter);
-          }
-          if (parameter == isTempMax) {
-            print(parameter);
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][0][r'$t'];
-            print(val_parameter);
-          }
-          if (parameter == isTempMin) {
-            print(parameter);
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][0][r'$t'];
-            print(val_parameter);
-          }
-          if (parameter == isHumMin) {
-            print(parameter);
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][r'$t'];
-            print(val_parameter);
-          }
-          if (parameter == isHumMax) {
-            print(parameter);
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][r'$t'];
-            print(val_parameter);
-          }
-          if (parameter == isTemp) {
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][0][r'$t'];
-          }
-          if (parameter == isWindDir) {
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][1][r'$t'];
-          }
-          if (parameter == isWindSpeed) {
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][3][r'$t'];
-          }
-          if (parameter == isHum) {
-            val_parameter = data['data']['forecast']['area'][i]['parameter'][j]
-                ['timerange'][0]['value'][r'$t'];
+            if (parameter == '4') {
+              parameter = 'Berawan Tebal';
+            }
+            if (parameter == '5') {
+              parameter = 'Udara Kabur';
+            }
+            if (parameter == '10') {
+              parameter = 'Asap';
+            }
+            if (parameter == '45') {
+              parameter = 'Kabut ';
+            }
+            if (parameter == '60') {
+              parameter = 'Hujan Ringan';
+            }
+            if (parameter == '61') {
+              parameter = 'Hujan Sedang';
+            }
+            if (parameter == '63') {
+              parameter = 'Hujan Lebat';
+            }
+            if (parameter == '80') {
+              parameter = 'Hujan Lokal';
+            }
+            if (parameter == '95') {
+              parameter = 'Hujan Petir';
+            }
+            if (parameter == '97') {
+              parameter = 'Hujan Petir';
+            }
+            listDataUdara[i][j].add(parameter);
+            listDataUdara[i][j].add(data['data']['forecast']['area'][i]
+                ['parameter'][5]['timerange'][k]['value'][0][r'$t']);
+            listDataUdara[i][j].add(data['data']['forecast']['area'][i]
+                ['parameter'][0]['timerange'][k]['value'][r'$t']);
+            listDataUdara[i][j].add(data['data']['forecast']['area'][i]
+                ['parameter'][8]['timerange'][k]['value'][2][r'$t']);
+            parameter = data['data']['forecast']['area'][i]['parameter'][7]
+                ['timerange'][k]['value'][1][r'$t'];
+            if (parameter == 'N') {
+              parameter = 'Utara';
+            }
+            if (parameter == 'NNE') {
+              parameter = 'Utara - timur laut';
+            }
+            if (parameter == 'NE') {
+              parameter = 'Timur laut';
+            }
+            if (parameter == 'ENE') {
+              parameter = 'Timur-Timur Laut';
+            }
+            if (parameter == 'E') {
+              parameter = 'Timur';
+            }
+
+            if (parameter == 'ESE') {
+              parameter = 'Timur-Tenggara';
+            }
+            if (parameter == 'SE') {
+              parameter = 'Tenggara';
+            }
+            if (parameter == 'SSE') {
+              parameter = 'Selatan-Tenggara';
+            }
+            if (parameter == 'S') {
+              parameter = 'Selatan';
+            }
+            if (parameter == 'SSW') {
+              parameter = 'Selatan-Barat Daya';
+            }
+            if (parameter == 'SW') {
+              parameter = 'Barat daya';
+            }
+            if (parameter == 'WSW') {
+              parameter = 'Barat-Barat Daya';
+            }
+            if (parameter == 'W') {
+              parameter = 'Barat';
+            }
+            if (parameter == 'WNW') {
+              parameter = 'Barat-Barat Laut';
+            }
+            if (parameter == 'NW') {
+              parameter = 'Barat laut';
+            }
+            if (parameter == 'NNW') {
+              parameter = 'Utara-Barat Laut';
+            }
+            if (parameter == 'VARIABLE') {
+              parameter = 'berubah-ubah';
+            }
+
+            listDataUdara[i][j].add(parameter);
+
+            if (k == 7) {
+              break;
+            }
           }
         }
-        print('\n');
       }
-      //print(data['data']['forecast']['area'][0]['parameter'][0]['timerange'][0]['value'][r'$t']);
-      //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
+      print(listDataUdara[0][0][0]);
+      print(listDataUdara[0][0][1]);
     } catch (e) {
       print(e);
     }

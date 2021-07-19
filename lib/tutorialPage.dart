@@ -7,7 +7,14 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 class TutorialPage extends StatefulWidget {
   final List dataGempa;
   final List dataUdara;
-  TutorialPage({Key key, @required this.dataGempa, this.dataUdara})
+  final List dataCuaca;
+  final List dataKota;
+  TutorialPage(
+      {Key key,
+      @required this.dataGempa,
+      this.dataUdara,
+      this.dataCuaca,
+      this.dataKota})
       : super(key: key);
 
   @override
@@ -125,6 +132,8 @@ class _TutorialPageState extends State<TutorialPage> {
                                   return HomePage(
                                     dataGempa: widget.dataGempa,
                                     dataUdara: widget.dataUdara,
+                                    dataCuaca: widget.dataCuaca,
+                                    dataKota: widget.dataKota,
                                   );
                                 }));
                               },

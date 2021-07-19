@@ -16,7 +16,14 @@ double widthButton = 165;
 class HomePage extends StatefulWidget {
   final List dataGempa;
   final List dataUdara;
-  HomePage({Key key, @required this.dataGempa, this.dataUdara})
+  final List dataCuaca;
+  final List dataKota;
+  HomePage(
+      {Key key,
+      @required this.dataGempa,
+      this.dataUdara,
+      this.dataCuaca,
+      this.dataKota})
       : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
@@ -119,8 +126,16 @@ class _HomePageState extends State<HomePage> {
     var besok = newText.contains(isBesok);
     var hariIni = newText.contains(isHari);
 
-    cuacaText =
-        ('pagi hari \ncuaca kabut dengan suhu 24 derajat, kelembaban 100% dan kecepatan angin 10 kilometer perjam ke tenggara');
+    var teksCuaca = '\n cuaca ' +
+        widget.dataCuaca[0][7][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[0][7][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[0][7][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[0][7][4].toString() +
+        ' kilometer perjam ke' +
+        widget.dataCuaca[0][7][5].toString();
     gempaText = ('gempa berkekuatan ' +
         widget.dataGempa[0][0].toString() +
         ' Magnitudo, pada ' +
@@ -146,7 +161,7 @@ class _HomePageState extends State<HomePage> {
     await flutterTts.setPitch(pitch);
 
     if (cuaca) {
-      await flutterTts.speak(cuacaText);
+      await flutterTts.speak(teksCuaca);
     }
     if (gempa) {
       await flutterTts.speak(gempaText);
@@ -331,7 +346,10 @@ class _HomePageState extends State<HomePage> {
                       ButtonGempa(
                         dataGempa: widget.dataGempa,
                       ),
-                      ButtonCuaca()
+                      ButtonCuaca(
+                        dataCuaca: widget.dataCuaca,
+                        dataKota: widget.dataKota,
+                      )
                     ],
                   )
                 ],
