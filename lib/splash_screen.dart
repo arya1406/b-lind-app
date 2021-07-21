@@ -91,8 +91,8 @@ void _sendDataGrabbing(BuildContext context) async {
   //? Grabbing Data Cuaca
   Xml2Json xml2json = new Xml2Json();
   List dataKota = [];
-  List<List<List<dynamic>>> listDataUdara =
-      List.generate(34, (i) => List.generate(7, (index) => []));
+  List<List<List<String>>> listDataUdara =
+      List.generate(33, (i) => List.generate(8, (index) => []));
   List waktuCuaca = [
     '',
     'Pagi hari',
@@ -115,127 +115,128 @@ void _sendDataGrabbing(BuildContext context) async {
 
     for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
       dataKota.add(data['data']['forecast']['area'][i]['name'][0][r'$t']);
-
-      for (var j = 0; j < 6; j++) {
-        for (var k = 1; k < 8; k++) {
-          if (k == 4) {
-            continue;
-          }
-
-          listDataUdara[i][j].add(waktuCuaca[k]);
-          parameter = data['data']['forecast']['area'][i]['parameter'][6]
-              ['timerange'][k]['value'][r'$t'];
-          if (parameter == '0') {
-            parameter = 'Cerah';
-          }
-          if (parameter == '1') {
-            parameter = 'Cerah Berawan';
-          }
-          if (parameter == '2') {
-            parameter = 'Cerah Berawan';
-          }
-          if (parameter == '3') {
-            parameter = 'Berawan';
-          }
-          if (parameter == '4') {
-            parameter = 'Berawan Tebal';
-          }
-          if (parameter == '5') {
-            parameter = 'Udara Kabur';
-          }
-          if (parameter == '10') {
-            parameter = 'Asap';
-          }
-          if (parameter == '45') {
-            parameter = 'Kabut ';
-          }
-          if (parameter == '60') {
-            parameter = 'Hujan Ringan';
-          }
-          if (parameter == '61') {
-            parameter = 'Hujan Sedang';
-          }
-          if (parameter == '63') {
-            parameter = 'Hujan Lebat';
-          }
-          if (parameter == '80') {
-            parameter = 'Hujan Lokal';
-          }
-          if (parameter == '95') {
-            parameter = 'Hujan Petir';
-          }
-          if (parameter == '97') {
-            parameter = 'Hujan Petir';
-          }
-          listDataUdara[i][j].add(parameter);
-          listDataUdara[i][j].add(data['data']['forecast']['area'][i]
-              ['parameter'][5]['timerange'][k]['value'][0][r'$t']);
-          listDataUdara[i][j].add(data['data']['forecast']['area'][i]
-              ['parameter'][0]['timerange'][k]['value'][r'$t']);
-          listDataUdara[i][j].add(data['data']['forecast']['area'][i]
-              ['parameter'][8]['timerange'][k]['value'][2][r'$t']);
-          parameter = data['data']['forecast']['area'][i]['parameter'][7]
-              ['timerange'][k]['value'][1][r'$t'];
-          if (parameter == 'N') {
-            parameter = 'Utara';
-          }
-          if (parameter == 'NNE') {
-            parameter = 'Utara - timur laut';
-          }
-          if (parameter == 'NE') {
-            parameter = 'Timur laut';
-          }
-          if (parameter == 'ENE') {
-            parameter = 'Timur-Timur Laut';
-          }
-          if (parameter == 'E') {
-            parameter = 'Timur';
-          }
-
-          if (parameter == 'ESE') {
-            parameter = 'Timur-Tenggara';
-          }
-          if (parameter == 'SE') {
-            parameter = 'Tenggara';
-          }
-          if (parameter == 'SSE') {
-            parameter = 'Selatan-Tenggara';
-          }
-          if (parameter == 'S') {
-            parameter = 'Selatan';
-          }
-          if (parameter == 'SSW') {
-            parameter = 'Selatan-Barat Daya';
-          }
-          if (parameter == 'SW') {
-            parameter = 'Barat daya';
-          }
-          if (parameter == 'WSW') {
-            parameter = 'Barat-Barat Daya';
-          }
-          if (parameter == 'W') {
-            parameter = 'Barat';
-          }
-          if (parameter == 'WNW') {
-            parameter = 'Barat-Barat Laut';
-          }
-          if (parameter == 'NW') {
-            parameter = 'Barat laut';
-          }
-          if (parameter == 'NNW') {
-            parameter = 'Utara-Barat Laut';
-          }
-          if (parameter == 'VARIABLE') {
-            parameter = 'berubah-ubah';
-          }
-
-          listDataUdara[i][j].add(parameter);
-
-          if (k == 7) {
-            break;
-          }
+      for (var j = 0; j < 8; j++) {
+        if (j == 0) {
+          continue;
         }
+        if (j == 4) {
+          continue;
+        }
+
+        listDataUdara[i][j].add(waktuCuaca[j]);
+        parameter = data['data']['forecast']['area'][i]['parameter'][6]
+            ['timerange'][j]['value'][r'$t'];
+        if (parameter == '0') {
+          parameter = 'Cerah';
+        }
+        if (parameter == '1') {
+          parameter = 'Cerah Berawan';
+        }
+        if (parameter == '2') {
+          parameter = 'Cerah Berawan';
+        }
+        if (parameter == '3') {
+          parameter = 'Berawan';
+        }
+        if (parameter == '4') {
+          parameter = 'Berawan Tebal';
+        }
+        if (parameter == '5') {
+          parameter = 'Udara Kabur';
+        }
+        if (parameter == '10') {
+          parameter = 'Asap';
+        }
+        if (parameter == '45') {
+          parameter = 'Kabut ';
+        }
+        if (parameter == '60') {
+          parameter = 'Hujan Ringan';
+        }
+        if (parameter == '61') {
+          parameter = 'Hujan Sedang';
+        }
+        if (parameter == '63') {
+          parameter = 'Hujan Lebat';
+        }
+        if (parameter == '80') {
+          parameter = 'Hujan Lokal';
+        }
+        if (parameter == '95') {
+          parameter = 'Hujan Petir';
+        }
+        if (parameter == '97') {
+          parameter = 'Hujan Petir';
+        }
+        listDataUdara[i][j].add(parameter);
+        listDataUdara[i][j].add(data['data']['forecast']['area'][i]['parameter']
+            [5]['timerange'][j]['value'][0][r'$t']);
+        listDataUdara[i][j].add(data['data']['forecast']['area'][i]['parameter']
+            [0]['timerange'][j]['value'][r'$t']);
+        listDataUdara[i][j].add(data['data']['forecast']['area'][i]['parameter']
+            [8]['timerange'][j]['value'][2][r'$t']);
+        parameter = data['data']['forecast']['area'][i]['parameter'][7]
+            ['timerange'][j]['value'][1][r'$t'];
+        if (parameter == 'N') {
+          parameter = 'Utara';
+        }
+        if (parameter == 'NNE') {
+          parameter = 'Utara - timur laut';
+        }
+        if (parameter == 'NE') {
+          parameter = 'Timur laut';
+        }
+        if (parameter == 'ENE') {
+          parameter = 'Timur-Timur Laut';
+        }
+        if (parameter == 'E') {
+          parameter = 'Timur';
+        }
+
+        if (parameter == 'ESE') {
+          parameter = 'Timur-Tenggara';
+        }
+        if (parameter == 'SE') {
+          parameter = 'Tenggara';
+        }
+        if (parameter == 'SSE') {
+          parameter = 'Selatan-Tenggara';
+        }
+        if (parameter == 'S') {
+          parameter = 'Selatan';
+        }
+        if (parameter == 'SSW') {
+          parameter = 'Selatan-Barat Daya';
+        }
+        if (parameter == 'SW') {
+          parameter = 'Barat daya';
+        }
+        if (parameter == 'WSW') {
+          parameter = 'Barat-Barat Daya';
+        }
+        if (parameter == 'W') {
+          parameter = 'Barat';
+        }
+        if (parameter == 'WNW') {
+          parameter = 'Barat-Barat Laut';
+        }
+        if (parameter == 'NW') {
+          parameter = 'Barat laut';
+        }
+        if (parameter == 'NNW') {
+          parameter = 'Utara-Barat Laut';
+        }
+        if (parameter == 'VARIABLE') {
+          parameter = 'berubah-ubah';
+        }
+
+        listDataUdara[i][j].add(parameter);
       }
+    }
+    //print(listDataUdara[0][0][0]);
+    for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
+      listDataUdara[i].removeAt(0);
+      listDataUdara[i].removeAt(3);
     }
   } catch (e) {
     print(e);
