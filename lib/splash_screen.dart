@@ -173,8 +173,12 @@ void _sendDataGrabbing(BuildContext context) async {
             [5]['timerange'][j]['value'][0][r'$t']);
         listDataUdara[i][j].add(data['data']['forecast']['area'][i]['parameter']
             [0]['timerange'][j]['value'][r'$t']);
-        listDataUdara[i][j].add(data['data']['forecast']['area'][i]['parameter']
-            [8]['timerange'][j]['value'][2][r'$t']);
+        parameter = data['data']['forecast']['area'][i]['parameter'][8]
+            ['timerange'][j]['value'][2][r'$t'];
+        if (parameter == '0') {
+          parameter = '0.00';
+        }
+        listDataUdara[i][j].add(parameter);
         parameter = data['data']['forecast']['area'][i]['parameter'][7]
             ['timerange'][j]['value'][1][r'$t'];
         if (parameter == 'N') {
@@ -227,7 +231,7 @@ void _sendDataGrabbing(BuildContext context) async {
           parameter = 'Utara-Barat Laut';
         }
         if (parameter == 'VARIABLE') {
-          parameter = 'berubah-ubah';
+          parameter = ' arah yang berubah-ubah';
         }
 
         listDataUdara[i][j].add(parameter);
@@ -241,7 +245,7 @@ void _sendDataGrabbing(BuildContext context) async {
   } catch (e) {
     print(e);
   }
-
+  print(dataKota);
   //? Grabbing Data gempa
   var dataGempa = [];
   List<List<String>> listDataGempa = [[], [], [], [], []];

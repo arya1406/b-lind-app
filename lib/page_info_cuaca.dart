@@ -1,5 +1,3 @@
-import 'package:b_lind/Aceh/Aceh_kab_page.dart';
-import 'package:b_lind/Bali/Bali_kab_page.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -8,9 +6,11 @@ import 'home.dart';
 //import 'scraping_test';
 
 class PageInfoCuaca extends StatefulWidget {
-  final List dataCuaca;
+  final List dataCuacaKota;
   final List dataKota;
-  PageInfoCuaca({Key key, this.dataCuaca, this.dataKota}) : super(key: key);
+  final int i;
+  PageInfoCuaca({Key key, this.dataCuacaKota, this.dataKota, this.i})
+      : super(key: key);
 
   @override
   _PageInfoCuacaState createState() => _PageInfoCuacaState();
@@ -42,18 +42,18 @@ class _PageInfoCuacaState extends State<PageInfoCuaca> {
             backgroundColor: Color(0xfffffc00),
             title: Container(
               alignment: Alignment.center,
-              child: Text('CUACA',
+              child: Text(widget.dataKota[widget.i],
                   style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'fauna one',
-                      fontSize: 45,
+                      fontSize: 40,
                       fontWeight: FontWeight.bold)),
             ),
           ),
         ),
         body: ListView.builder(
             itemCount: 6,
-            itemBuilder: (context, i) {
+            itemBuilder: (context, index) {
               return Column(children: [
                 Semantics(
                   container: true,
@@ -72,34 +72,34 @@ class _PageInfoCuacaState extends State<PageInfoCuaca> {
                         speech.stop();
                         flutterTts.setLanguage(bahasa);
                         await flutterTts.setPitch(pitch);
-                        teksCuaca = widget.dataCuaca[0][i][0].toString() +
+                        teksCuaca = widget.dataCuacaKota[index][0].toString() +
                             '\n cuaca ' +
-                            widget.dataCuaca[0][i][1].toString() +
+                            widget.dataCuacaKota[index][1].toString() +
                             ' dengan suhu ' +
-                            widget.dataCuaca[0][i][2].toString() +
+                            widget.dataCuacaKota[index][2].toString() +
                             'derajat, kelembaban ' +
-                            widget.dataCuaca[0][i][3].toString() +
+                            widget.dataCuacaKota[index][3].toString() +
                             '%, kecepatan angin ' +
-                            widget.dataCuaca[0][i][4]
+                            widget.dataCuacaKota[index][4]
                                 .toString()
                                 .substring(0, 2) +
                             ' kilometer perjam ke ' +
-                            widget.dataCuaca[0][i][5].toString();
+                            widget.dataCuacaKota[index][5].toString();
                         await flutterTts.speak(teksCuaca);
                       },
                       child: ExcludeSemantics(
                         child: Text(
-                            widget.dataCuaca[0][i][0].toString() +
+                            widget.dataCuacaKota[index][0].toString() +
                                 ' cuaca ' +
-                                widget.dataCuaca[0][i][1].toString() +
+                                widget.dataCuacaKota[index][1].toString() +
                                 ' dengan suhu ' +
-                                widget.dataCuaca[0][i][2].toString() +
+                                widget.dataCuacaKota[index][2].toString() +
                                 ' derajat, kelembaban ' +
-                                widget.dataCuaca[0][i][3].toString() +
+                                widget.dataCuacaKota[index][3].toString() +
                                 '%, kecepatan angin ' +
-                                widget.dataCuaca[0][i][4].toString() +
+                                widget.dataCuacaKota[index][4].toString() +
                                 ' kilometer perjam ke ' +
-                                widget.dataCuaca[0][i][5].toString(),
+                                widget.dataCuacaKota[index][5].toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,

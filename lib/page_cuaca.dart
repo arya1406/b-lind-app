@@ -1,5 +1,3 @@
-import 'package:b_lind/Aceh/Aceh_kab_page.dart';
-import 'package:b_lind/Bali/Bali_kab_page.dart';
 import 'package:b_lind/page_info_cuaca.dart';
 import 'package:flutter/material.dart';
 //import 'scraping_test';
@@ -55,9 +53,9 @@ class _PageCuacaState extends State<PageCuaca> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return PageInfoCuaca(
-                            dataKota: widget.dataKota,
-                            dataCuaca: widget.dataCuaca,
-                          );
+                              dataKota: widget.dataKota,
+                              dataCuacaKota: widget.dataCuaca[index],
+                              i: (index));
                         }));
                       },
                       child: ExcludeSemantics(

@@ -3,6 +3,7 @@ import 'package:xml2json/xml2json.dart';
 import 'package:http/http.dart'; // Contains a client for making API calls
 import 'package:html/parser.dart'; // Contains HTML parsers to generate a Document object
 import 'package:html/dom.dart'; // Contains DOM related classes for extracting data from elements
+import 'package:geolocator/geolocator.dart';
 
 class UdaraService {
   Future udara() async {
@@ -260,28 +261,36 @@ class CuacaService {
           listDataUdara[i][j].add(parameter);
         }
       }
-      //print(listDataUdara[0][0][0]);
+      //print(listDataUdara[il][0][0]);
       for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
         listDataUdara[i].removeAt(0);
         listDataUdara[i].removeAt(3);
       }
-      print(listDataUdara);
+      var il = 1;
+      print(listDataUdara[il]);
       for (var i = 0; i < 6; i++) {
-        print(listDataUdara[0][i][0].toString() +
+        print(listDataUdara[il][i][0].toString() +
             '\n cuaca ' +
-            listDataUdara[0][i][1].toString() +
+            listDataUdara[il][i][1].toString() +
             ' dengan suhu ' +
-            listDataUdara[0][i][2].toString() +
+            listDataUdara[il][i][2].toString() +
             ' derajat, kelembaban ' +
-            listDataUdara[0][i][3].toString() +
+            listDataUdara[il][i][3].toString() +
             '%, kecepatan angin ' +
-            listDataUdara[0][i][4].toString().substring(0, 2) +
+            listDataUdara[il][i][4].toString().substring(0, 2) +
             ' kilometer perjam ke ' +
-            listDataUdara[0][i][5].toString() +
+            listDataUdara[il][i][5].toString() +
             ' \n');
       }
     } catch (e) {
       print(e);
     }
+  }
+}
+
+class GPSService {
+  Future gps() async {
+    Position position = await Geolocator.getLastKnownPosition();
+    print(position);
   }
 }
