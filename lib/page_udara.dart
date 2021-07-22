@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-
+import 'package:vibration/vibration.dart';
 import 'home.dart';
 
 class UdaraPage extends StatefulWidget {
@@ -57,46 +57,52 @@ class _UdaraPageState extends State<UdaraPage> {
                       Semantics(
                         container: true,
                         label: 'klik dua kali untuk informasi',
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              top: 20, left: 20, right: 20, bottom: 10),
-                          padding: EdgeInsets.all(13),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(13),
-                            color: Color(0xfffffc00),
-                            border: Border.all(color: Colors.black, width: 1),
-                          ),
-                          child: InkWell(
-                            onTap: () async {
-                              speech.stop();
-                              flutterTts.setLanguage(bahasa);
-                              await flutterTts.setPitch(pitch);
-                              teksUdara = 'Kualitas Udara di wilayah ' +
-                                  widget.dataUdara[index][0]
-                                      .toString()
-                                      .substring(0, 4) +
-                                  widget.dataUdara[index][0]
-                                      .toString()
-                                      .substring(4) +
-                                  widget.dataUdara[index +
-                                          widget.dataUdara.length ~/ 2][0]
-                                      .toString();
-                              await flutterTts.speak(teksUdara);
-                            },
-                            child: ExcludeSemantics(
-                              child: Text(
-                                  'Kualitas Udara di wilayah \n ' +
-                                      widget.dataUdara[index][0].toString() +
-                                      ' ' +
-                                      widget.dataUdara[index +
-                                              widget.dataUdara.length ~/ 2][0]
-                                          .toString(),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 21,
-                                      fontFamily: 'fauna one',
-                                      fontWeight: FontWeight.bold)),
+                        child: ExcludeSemantics(
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                top: 20, left: 20, right: 20, bottom: 10),
+                            padding: EdgeInsets.all(13),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              color: Color(0xfffffc00),
+                              border: Border.all(color: Colors.black, width: 1),
+                            ),
+                            child: InkWell(
+                              onTap: () async {
+                                if (await Vibration.hasVibrator()) {
+                                  Vibration.vibrate(duration: 100);
+                                }
+
+                                speech.stop();
+                                flutterTts.setLanguage(bahasa);
+                                await flutterTts.setPitch(pitch);
+                                teksUdara = 'Kualitas Udara di wilayah ' +
+                                    widget.dataUdara[index][0]
+                                        .toString()
+                                        .substring(0, 4) +
+                                    widget.dataUdara[index][0]
+                                        .toString()
+                                        .substring(4) +
+                                    widget.dataUdara[index +
+                                            widget.dataUdara.length ~/ 2][0]
+                                        .toString();
+                                await flutterTts.speak(teksUdara);
+                              },
+                              child: ExcludeSemantics(
+                                child: Text(
+                                    'Kualitas Udara di wilayah \n ' +
+                                        widget.dataUdara[index][0].toString() +
+                                        ' ' +
+                                        widget.dataUdara[index +
+                                                widget.dataUdara.length ~/ 2][0]
+                                            .toString(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 21,
+                                        fontFamily: 'fauna one',
+                                        fontWeight: FontWeight.bold)),
+                              ),
                             ),
                           ),
                         ),

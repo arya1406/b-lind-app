@@ -1,14 +1,16 @@
 import 'dart:convert';
-
+import 'package:geocoding/geocoding.dart';
 import 'package:b_lind/page_gempa.dart';
 import 'package:flutter/material.dart';
 import 'package:b_lind/home.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:xml2json/xml2json.dart';
 import 'dart:async'; // Contains HTML parsers to generate a Document object
 //import 'package:html/dom.dart' as dom;
 
+import 'gps_page_coba.dart';
 import 'tutorialPage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -91,6 +93,7 @@ void _sendDataGrabbing(BuildContext context) async {
   //? Grabbing Data Cuaca
   Xml2Json xml2json = new Xml2Json();
   List dataKota = [];
+  List dataKotaHome = [];
   List<List<List<String>>> listDataUdara =
       List.generate(33, (i) => List.generate(8, (index) => []));
   List waktuCuaca = [
@@ -115,6 +118,7 @@ void _sendDataGrabbing(BuildContext context) async {
 
     for (var i = 0; i < data['data']['forecast']['area'].length; i++) {
       dataKota.add(data['data']['forecast']['area'][i]['name'][0][r'$t']);
+      dataKotaHome.add(data['data']['forecast']['area'][i]['name'][1][r'$t']);
       for (var j = 0; j < 8; j++) {
         if (j == 0) {
           continue;
@@ -245,9 +249,60 @@ void _sendDataGrabbing(BuildContext context) async {
   } catch (e) {
     print(e);
   }
-  print(dataKota);
+
+  //?GPS
+  String dataGPS;
+  int intGPS;
+  int indexGPS = 1;
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  // Test if location services are enabled.
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    // Location services are not enabled don't continue
+    // accessing the position and request users of the
+    // App to enable the location services.
+    return Future.error('Location services are disabled.');
+  }
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      // Permissions are denied, next time you could try
+      // requesting permissions again (this is also where
+      // Android's shouldShowRequestPermissionRationale
+      // returned true. According to Android guidelines
+      // your App should show an explanatory UI now.
+      return Future.error('Location permissions are denied');
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    // Permissions are denied forever, handle appropriately.
+    return Future.error(
+        'Location permissions are permanently denied, we cannot request permissions.');
+  }
+  Position position = await Geolocator.getLastKnownPosition();
+  List<Placemark> placemarks =
+      await placemarkFromCoordinates(position.latitude, position.longitude);
+  dataGPS = placemarks[0].subAdministrativeArea;
+  for (var item in dataKotaHome) {
+    print(item);
+    if (dataGPS == item) {
+      print(item);
+      indexGPS = dataKotaHome.indexOf(item);
+      print(indexGPS);
+      break;
+    } else {
+      indexGPS = 1;
+    }
+  }
+
   //? Grabbing Data gempa
   var dataGempa = [];
+  var jarakGempa;
   List<List<String>> listDataGempa = [[], [], [], [], []];
   try {
     var client = Client();
@@ -256,15 +311,25 @@ void _sendDataGrabbing(BuildContext context) async {
     xml2json.parse(response.body);
     var jsondata = xml2json.toGData();
     var data = json.decode(jsondata);
+    var koordinat;
 
     for (var i = 0; i < 5; i++) {
       listDataGempa[i].add(data['Infogempa']['gempa'][i]['Magnitude'][r'$t']);
       listDataGempa[i].add(data['Infogempa']['gempa'][i]['Tanggal'][r'$t']);
       listDataGempa[i].add(data['Infogempa']['gempa'][i]['Jam'][r'$t']);
       listDataGempa[i].add(data['Infogempa']['gempa'][i]['Wilayah'][r'$t']);
+      koordinat = data['Infogempa']['gempa'][i]['point']['coordinates'][r'$t'];
+      var indexKoma = koordinat.indexOf(',');
+      var latGempa = double.parse(koordinat.substring(0, indexKoma));
+      var longGempa = double.parse(koordinat.substring(indexKoma + 1));
+      double distanceInMeters = Geolocator.distanceBetween(
+          position.latitude, position.longitude, latGempa, longGempa);
+      jarakGempa = (distanceInMeters / 1000).round();
+      listDataGempa[i].add(jarakGempa.toString());
       listDataGempa[i].add(data['Infogempa']['gempa'][i]['Potensi'][r'$t']);
       //dataGempa[i].add(listDataGempa);
     }
+
     dataGempa = listDataGempa;
 
     //dataGempa.add(data['Infogempa']['gempa'][0]['Tanggal'][r'$t']);
@@ -337,8 +402,32 @@ void _sendDataGrabbing(BuildContext context) async {
     dataUdara.add(wilMap[i].values.toList());
   }
 
+  //? Time
+  var now = DateTime.now();
+  var indexTime;
+  if (now.hour <= 6) {
+    indexTime = 0;
+  }
+  if (now.hour >= 7 && now.hour <= 18) {
+    indexTime = 1;
+  }
+  if (now.hour >= 19 && now.hour <= 24) {
+    indexTime = 2;
+  }
+  intGPS = indexGPS;
   List dataToSend = dataGempa;
   List dataCuaca = listDataUdara;
+  /*Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PageGPS(
+          position: dataGPS,
+          intGPS: intGPS,
+          dataKota: dataKota,
+          indexTime: indexTime,
+        ),
+      )); */
+
   Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -347,6 +436,10 @@ void _sendDataGrabbing(BuildContext context) async {
           dataUdara: dataUdara,
           dataCuaca: dataCuaca,
           dataKota: dataKota,
+          dataKotaHome: dataKotaHome,
+          position: dataGPS,
+          intGPS: intGPS,
+          indexTime: indexTime,
         ),
       ));
 }

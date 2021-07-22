@@ -1,7 +1,7 @@
 import 'package:b_lind/page_udara.dart';
-
 import 'home.dart';
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 
 class ButtonUdara extends StatefulWidget {
   final List dataUdara;
@@ -35,15 +35,19 @@ class _ButtonUdaraState extends State<ButtonUdara> {
         label: 'informasi kualitas udara',
         child: Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.only(top: 30),
-          height: heightButton,
-          width: widthButton,
+          margin: EdgeInsets.fromLTRB(30, 10, 30, 5),
+          height: MediaQuery.of(context).size.height / 4,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: (isPressed) ? Colors.grey : Color(0xfffffc00),
               borderRadius: BorderRadius.circular(51),
               border: Border.all(color: Colors.black, width: 1.5)),
           child: InkWell(
-            onTap: () {
+            onTap: () async {
+              if (await Vibration.hasVibrator()) {
+                Vibration.vibrate(duration: 100);
+              }
+
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return UdaraPage(dataUdara: widget.dataUdara);
               }));
@@ -51,14 +55,16 @@ class _ButtonUdaraState extends State<ButtonUdara> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(image: AssetImage('images/air.png')),
+                Container(
+                    width: MediaQuery.of(context).size.width / 4,
+                    child: Image(image: AssetImage('images/air.png'))),
                 ExcludeSemantics(
                   child: new Text(
-                    'KUALITAS\nUDARA',
+                    'KUALITAS UDARA',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'fauna one',
-                        fontSize: 25,
+                        fontSize: 35,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

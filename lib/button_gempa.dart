@@ -1,10 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:b_lind/page_gempa.dart';
 import 'package:b_lind/home.dart';
-import 'package:http/http.dart';
-import 'package:xml2json/xml2json.dart';
+import 'package:vibration/vibration.dart';
 
 class ButtonGempa extends StatefulWidget {
   final List dataGempa;
@@ -38,15 +36,19 @@ class _ButtonGempaState extends State<ButtonGempa> {
           label: 'informasi gempa bumi',
           child: Container(
             padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(bottom: 50),
-            height: heightButton,
-            width: widthButton,
+            margin: EdgeInsets.fromLTRB(30, 10, 30, 5),
+            height: MediaQuery.of(context).size.height / 4,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: (isPressed) ? Colors.grey : Color(0xfffffc00),
                 borderRadius: BorderRadius.circular(51),
                 border: Border.all(color: Colors.black, width: 1.5)),
             child: InkWell(
               onTap: () async {
+                if (await Vibration.hasVibrator()) {
+                  Vibration.vibrate(duration: 100);
+                }
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -58,13 +60,15 @@ class _ButtonGempaState extends State<ButtonGempa> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image(image: AssetImage('images/earthquake.png')),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 4,
+                      child: Image(image: AssetImage('images/earthquake.png'))),
                   ExcludeSemantics(
                     child: Text(
                       'GEMPA',
                       style: TextStyle(
                           fontFamily: 'fauna one',
-                          fontSize: 34,
+                          fontSize: 45,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

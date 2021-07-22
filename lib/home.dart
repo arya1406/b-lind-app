@@ -6,6 +6,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:b_lind/button_bahasa.dart';
 import 'package:b_lind/button_cuaca.dart';
 import 'package:b_lind/button_gempa.dart';
+import 'package:vibration/vibration.dart';
 
 import 'button_udara.dart';
 
@@ -18,12 +19,20 @@ class HomePage extends StatefulWidget {
   final List dataUdara;
   final List dataCuaca;
   final List dataKota;
+  final List dataKotaHome;
+  final int intGPS;
+  final String dataGPS;
+  final dynamic indexTime;
   HomePage(
       {Key key,
       @required this.dataGempa,
       this.dataUdara,
       this.dataCuaca,
-      this.dataKota})
+      this.dataKota,
+      this.dataKotaHome,
+      this.dataGPS,
+      this.intGPS,
+      this.indexTime})
       : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
@@ -56,10 +65,15 @@ class _HomePageState extends State<HomePage> {
   var isGempanya = 'gempanya';
   var isGempa = 'gempa'; // gempa
   var isPolusi = 'polusi';
+  var isKotor = 'kotor';
   var isUdaranya = 'udaranya'; // udara
   var isUdara = 'udara';
   var isHari = 'hari ini';
   var isBesok = 'besok';
+  var isBesokPagi = 'pagi';
+  var isBesokSiang = 'siang';
+  var isBesokMalam = 'malam';
+  var isBesokSore = 'sore';
   var isSekarang = 'sekarang';
   var newText = ''; //?
   var cuacaText = '';
@@ -111,12 +125,26 @@ class _HomePageState extends State<HomePage> {
   final FlutterTts flutterTts = FlutterTts();
 
   Future _speak() async {
+    _isListening = false;
     speech.stop();
     newText = _text.toLowerCase();
+
     var polusi = newText.contains(isPolusi);
-    var cuaca = newText.contains(isCuaca);
-    var gempa = newText.contains(isGempa);
-    var udara = newText.contains(isUdara);
+    var cuaca = newText.contains(isCuaca) ||
+        newText.contains(isHujan) ||
+        newText.contains(isCuacanya) ||
+        newText.contains(isGelap) ||
+        newText.contains(isGerimis) ||
+        newText.contains(isMendung) ||
+        newText.contains(isTerang) ||
+        newText.contains(isDingin) ||
+        newText.contains(isPanas) ||
+        newText.contains(isSejuk) ||
+        newText.contains(isAwan);
+    var gempa = newText.contains(isGempa) ||
+        newText.contains(isGetaran) ||
+        newText.contains(isGetarannya);
+    var udara = newText.contains(isUdara) || newText.contains(isUdaranya);
     var wilayah1 = newText.contains(isMedan);
     var wilayah2 = newText.contains(isKototabang);
     var wilayah3 = newText.contains(isJambi);
@@ -124,18 +152,69 @@ class _HomePageState extends State<HomePage> {
     var wilayah5 = newText.contains(isPangkalan);
     var sekarang = newText.contains(isSekarang);
     var besok = newText.contains(isBesok);
+    var besokPagi = newText.contains(isBesokPagi);
+    var besokSiang = newText.contains(isBesokSiang);
+    var besokMalam =
+        newText.contains(isBesokMalam) || newText.contains(isBesokSore);
     var hariIni = newText.contains(isHari);
 
     var teksCuaca = '\n cuaca ' +
-        widget.dataCuaca[0][7][1].toString() +
+        widget.dataCuaca[widget.intGPS][widget.indexTime][1].toString() +
         ' dengan suhu ' +
-        widget.dataCuaca[0][7][2].toString() +
+        widget.dataCuaca[widget.intGPS][widget.indexTime][2].toString() +
         'derajat, kelembaban ' +
-        widget.dataCuaca[0][7][3].toString() +
+        widget.dataCuaca[widget.intGPS][widget.indexTime][3].toString() +
         '%, kecepatan angin ' +
-        widget.dataCuaca[0][7][4].toString() +
-        ' kilometer perjam ke' +
-        widget.dataCuaca[0][7][5].toString();
+        widget.dataCuaca[widget.intGPS][widget.indexTime][4]
+            .toString()
+            .substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][widget.indexTime][5].toString();
+
+    var teksCuacaBesok = 'Besok Hari , \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][0][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][0][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][0][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][0][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][0][5].toString();
+
+    var teksCuacaBesokPagi = 'Besok Pagi , \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][3][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][3][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][3][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][3][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][3][5].toString();
+
+    var teksCuacaBesokSiang = 'Besok Siang, \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][4][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][4][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][4][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][4][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][4][5].toString();
+
+    var teksCuacaBesokMalam = 'Besok Malam , \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][5][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][5][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][5][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][5][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][5][5].toString();
+
     gempaText = ('gempa berkekuatan ' +
         widget.dataGempa[0][0].toString() +
         ' Magnitudo, pada ' +
@@ -147,14 +226,19 @@ class _HomePageState extends State<HomePage> {
         widget.dataGempa[0][3].toString().substring(0, 6) +
         ' ' +
         widget.dataGempa[0][3].toString().substring(6) +
-        widget.dataGempa[0][4].toString().substring(0, 6) +
-        widget.dataGempa[0][4].toString().substring(6) +
+        ' ,' +
+        widget.dataGempa[0][4].toString() +
+        ' kilometer dari anda, ' +
+        widget.dataGempa[0][5].toString().substring(0, 6) +
+        widget.dataGempa[0][5].toString().substring(6) +
         ',');
+
     var udaraMedanText = ("Kualitas Udara di wilayah $isMedan baik");
     var udaraPangkalanText = ("Kualitas Udara di wilayah $isPangkalan baik");
     var udaraKotoText = ("Kualitas Udara di wilayah $isKototabang baik");
     var udaraJambiText = ("Kualitas Udara di wilayah $isJambi sedang");
     var udaraCibeureumText = ("Kualitas Udara di wilayah $isCibeureum baik");
+    var udaraAll = ("Kualitas Udara di wilayah" + widget.dataGPS + "baik");
     var noData = ("maaf, data di kota anda tidak tersedia");
 
     flutterTts.setLanguage(bahasa);
@@ -163,6 +247,19 @@ class _HomePageState extends State<HomePage> {
     if (cuaca) {
       await flutterTts.speak(teksCuaca);
     }
+    if (cuaca && besok) {
+      await flutterTts.speak(teksCuacaBesok);
+    }
+    if (cuaca && besokPagi) {
+      await flutterTts.speak(teksCuacaBesokPagi);
+    }
+    if (cuaca && besokSiang) {
+      await flutterTts.speak(teksCuacaBesokSiang);
+    }
+    if (cuaca && besokMalam) {
+      await flutterTts.speak(teksCuacaBesokMalam);
+    }
+
     if (gempa) {
       await flutterTts.speak(gempaText);
     }
@@ -195,6 +292,9 @@ class _HomePageState extends State<HomePage> {
     }
     if (polusi && wilayah5) {
       await flutterTts.speak(udaraPangkalanText);
+    }
+    if (udara || polusi) {
+      await flutterTts.speak(udaraAll);
     }
   }
 
@@ -317,7 +417,12 @@ class _HomePageState extends State<HomePage> {
                           child: ExcludeSemantics(
                             child: FloatingActionButton(
                               backgroundColor: Color(0xfffffc00),
-                              onPressed: _listen,
+                              onPressed: () async {
+                                if (await Vibration.hasVibrator()) {
+                                  Vibration.vibrate(duration: 100);
+                                }
+                                _listen();
+                              },
                               child: Image(
                                   image: AssetImage(
                                 "images/mic.png",
@@ -333,24 +438,13 @@ class _HomePageState extends State<HomePage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ButtonOption(),
-                      ButtonUdara(dataUdara: widget.dataUdara)
-                    ],
+                  ButtonUdara(dataUdara: widget.dataUdara),
+                  ButtonGempa(
+                    dataGempa: widget.dataGempa,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ButtonGempa(
-                        dataGempa: widget.dataGempa,
-                      ),
-                      ButtonCuaca(
-                        dataCuaca: widget.dataCuaca,
-                        dataKota: widget.dataKota,
-                      )
-                    ],
+                  ButtonCuaca(
+                    dataCuaca: widget.dataCuaca,
+                    dataKota: widget.dataKota,
                   )
                 ],
               ),

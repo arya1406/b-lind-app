@@ -3,18 +3,27 @@ import 'package:b_lind/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:vibration/vibration.dart';
 
 class TutorialPage extends StatefulWidget {
   final List dataGempa;
   final List dataUdara;
   final List dataCuaca;
   final List dataKota;
+  final List dataKotaHome;
+  final String position;
+  final int intGPS;
+  final dynamic indexTime;
   TutorialPage(
       {Key key,
       @required this.dataGempa,
       this.dataUdara,
       this.dataCuaca,
-      this.dataKota})
+      this.dataKota,
+      this.dataKotaHome,
+      this.intGPS,
+      this.position,
+      this.indexTime})
       : super(key: key);
 
   @override
@@ -23,7 +32,11 @@ class TutorialPage extends StatefulWidget {
 
 class _TutorialPageState extends State<TutorialPage> {
   String bahasa = 'id-ID';
-  String teksTutorial;
+  String teksTutorial1;
+  String teksTutorial2;
+  String teksTutorial3;
+  String teksTutorial4;
+  String teksTutorial5;
   dynamic languages;
   String language;
   double volume = 0.5;
@@ -37,13 +50,24 @@ class _TutorialPageState extends State<TutorialPage> {
   stt.SpeechToText speech = stt.SpeechToText();
   final FlutterTts flutterTts = FlutterTts();
 
-  Future _speakTutor() async {
+  _speakTutor() async {
     speech.stop();
     flutterTts.setLanguage(bahasa);
-    await flutterTts.setPitch(pitch);
-    teksTutorial =
-        "selamat datang di info B M K G untuk tunanetra. aplikasi ini akan memudahkan anda untuk mendapatkan informasi prakiraan cuaca, gempa terkini diatas 5 magnitudo dan info kualitas udara, Halaman utama aplikasi terdapat tombol mikrofon, ketika tombol di klik akan timbul suara klik, kemudian anda bisa bertanya tentang seputar informasi cuaca, gempa dan kualitas udara, seperti, gempa yang barusan terjadi gimana. atau. gimana kualitas udara di wilayah medan. atau. cuaca hari ini gimana ?. aplikasi akan memberikan informasi yang anda minta dalam bentuk suara. jika anda menslide ke kiri layar, terdapat menu tombol informasi cuaca berdasarkan provinsi, tombol informasi gempa terkini, tombol informasi kualitas udara, berbentuk teks yang dapat dibaca oleh fitur Talkback. terdapat pula tombol untuk menukar bahasa pada aplikasi. Semoga aplikasi ini dapat membantu anda dalam mendapatkan informasi prakiraan cuaca, gempa bumi, dan kualitas udara. tekan tombol skip dibawah untuk masuk ke menu utama.";
-    await flutterTts.speak(teksTutorial);
+    flutterTts.setPitch(pitch);
+    teksTutorial1 = "selamat datang di info B M K G untuk tunanetra. ";
+    teksTutorial2 =
+        "aplikasi ini akan memudahkan anda untuk mendapatkan informasi prakiraan cuaca hari ini dan besok, gempa terkini diatas 5 magnitudo dan info kualitas udara, ";
+    teksTutorial3 =
+        " Halaman utama aplikasi terdapat tombol mikrofon, ketika tombol di klik akan timbul suara klik dan bergetar, kemudian anda bisa bertanya tentang seputar informasi cuaca, gempa dan kualitas udara, ";
+    teksTutorial4 =
+        "seperti, gempa yang terkini. atau. polusi udara di wilayah medan. atau. cuaca hari ini gimana ?.";
+    teksTutorial5 =
+        " aplikasi akan memberikan informasi yang anda minta dalam bentuk suara. jika anda menslide ke kiri layar, terdapat menu tombol informasi cuaca berdasarkan provinsi, tombol informasi gempa terkini, tombol informasi kualitas udara, berbentuk teks yang dapat dibaca oleh fitur Talkback. Semoga aplikasi ini dapat membantu anda dalam mendapatkan informasi prakiraan cuaca, gempa bumi, dan kualitas udara. tekan tombol skip dibawah untuk masuk ke menu utama.";
+    flutterTts.speak(teksTutorial1 +
+        teksTutorial2 +
+        teksTutorial3 +
+        teksTutorial4 +
+        teksTutorial5);
   }
 
   Future _stop() async {
@@ -97,7 +121,10 @@ class _TutorialPageState extends State<TutorialPage> {
                             child: FloatingActionButton(
                                 heroTag: 'btn1',
                                 backgroundColor: Color(0xfffffc00),
-                                onPressed: () {
+                                onPressed: () async {
+                                  if (await Vibration.hasVibrator()) {
+                                    Vibration.vibrate(duration: 100);
+                                  }
                                   _speakTutor();
                                 },
                                 child: Icon(
@@ -125,7 +152,10 @@ class _TutorialPageState extends State<TutorialPage> {
                             child: FloatingActionButton(
                               heroTag: 'btn2',
                               backgroundColor: Color(0xfffffc00),
-                              onPressed: () {
+                              onPressed: () async {
+                                if (await Vibration.hasVibrator()) {
+                                  Vibration.vibrate(duration: 100);
+                                }
                                 _stop();
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
@@ -134,6 +164,10 @@ class _TutorialPageState extends State<TutorialPage> {
                                     dataUdara: widget.dataUdara,
                                     dataCuaca: widget.dataCuaca,
                                     dataKota: widget.dataKota,
+                                    dataKotaHome: widget.dataKotaHome,
+                                    dataGPS: widget.position,
+                                    intGPS: widget.intGPS,
+                                    indexTime: widget.indexTime,
                                   );
                                 }));
                               },

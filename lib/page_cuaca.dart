@@ -1,6 +1,6 @@
 import 'package:b_lind/page_info_cuaca.dart';
 import 'package:flutter/material.dart';
-//import 'scraping_test';
+import 'package:vibration/vibration.dart';
 
 class PageCuaca extends StatefulWidget {
   final List dataCuaca;
@@ -49,7 +49,11 @@ class _PageCuacaState extends State<PageCuaca> {
                       border: Border.all(color: Colors.black, width: 1),
                     ),
                     child: InkWell(
-                      onTap: () {
+                      onTap: () async {
+                        if (await Vibration.hasVibrator()) {
+                          Vibration.vibrate(duration: 100);
+                        }
+
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return PageInfoCuaca(
@@ -63,7 +67,7 @@ class _PageCuacaState extends State<PageCuaca> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 35,
+                                fontSize: 30,
                                 fontFamily: 'fauna one',
                                 fontWeight: FontWeight.bold)),
                       ),

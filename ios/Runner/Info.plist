@@ -39,6 +39,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Reason Why App Needs Location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Reason Why App Needs Location</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<key>NSMicrophoneUsageDescription</key>

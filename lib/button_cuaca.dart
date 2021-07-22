@@ -1,6 +1,10 @@
+import 'package:flutter_tts/flutter_tts.dart';
+
 import 'home.dart';
 import 'package:flutter/material.dart';
 import 'page_cuaca.dart';
+import 'package:vibration/vibration.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class ButtonCuaca extends StatefulWidget {
   final List dataCuaca;
@@ -12,6 +16,12 @@ class ButtonCuaca extends StatefulWidget {
 }
 
 class _ButtonCuacaState extends State<ButtonCuaca> {
+  TtsState ttsState = TtsState.stopped;
+  get isPlaying => ttsState == TtsState.playing;
+  get isStopped => ttsState == TtsState.stopped;
+  stt.SpeechToText speech = stt.SpeechToText();
+  final FlutterTts flutterTts = FlutterTts();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -35,15 +45,19 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
         label: 'informasi chuacha',
         child: Container(
           padding: EdgeInsets.all(10),
-          margin: EdgeInsets.only(bottom: 50),
-          height: heightButton,
-          width: widthButton,
+          margin: EdgeInsets.fromLTRB(30, 10, 30, 5),
+          height: MediaQuery.of(context).size.height / 4,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: (isPressed) ? Colors.grey : Color(0xfffffc00),
               borderRadius: BorderRadius.circular(51),
               border: Border.all(color: Colors.black, width: 1.5)),
           child: InkWell(
-            onTap: () {
+            onTap: () async {
+              speech.stop();
+              if (await Vibration.hasVibrator()) {
+                Vibration.vibrate(duration: 100);
+              }
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return PageCuaca(
                   dataCuaca: widget.dataCuaca,
@@ -54,13 +68,15 @@ class _ButtonCuacaState extends State<ButtonCuaca> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image(image: AssetImage('images/weather.png')),
+                Container(
+                    width: MediaQuery.of(context).size.width / 4,
+                    child: Image(image: AssetImage('images/weather.png'))),
                 ExcludeSemantics(
                   child: Text(
                     'CUACA',
                     style: TextStyle(
                         fontFamily: 'fauna one',
-                        fontSize: 35,
+                        fontSize: 45,
                         fontWeight: FontWeight.bold),
                   ),
                 )
