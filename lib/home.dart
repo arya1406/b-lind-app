@@ -70,10 +70,10 @@ class _HomePageState extends State<HomePage> {
   var isUdara = 'udara';
   var isHari = 'hari ini';
   var isBesok = 'besok';
-  var isBesokPagi = 'pagi';
-  var isBesokSiang = 'siang';
-  var isBesokMalam = 'malam';
-  var isBesokSore = 'sore';
+  var isPagi = 'pagi';
+  var isSiang = 'siang';
+  var isMalam = 'malam';
+  var isSore = 'sore';
   var isSekarang = 'sekarang';
   var newText = ''; //?
   var cuacaText = '';
@@ -152,10 +152,12 @@ class _HomePageState extends State<HomePage> {
     var wilayah5 = newText.contains(isPangkalan);
     var sekarang = newText.contains(isSekarang);
     var besok = newText.contains(isBesok);
-    var besokPagi = newText.contains(isBesokPagi);
-    var besokSiang = newText.contains(isBesokSiang);
-    var besokMalam =
-        newText.contains(isBesokMalam) || newText.contains(isBesokSore);
+    var pagi = newText.contains(isPagi);
+    var siang = newText.contains(isSiang);
+    var malam = newText.contains(isMalam);
+    var besokPagi = newText.contains(isBesok) && newText.contains(isPagi);
+    var besokSiang = newText.contains(isBesok) && newText.contains(isSiang);
+    var besokMalam = newText.contains(isBesok) && newText.contains(isMalam);
     var hariIni = newText.contains(isHari);
 
     var teksCuaca = '\n cuaca ' +
@@ -172,6 +174,17 @@ class _HomePageState extends State<HomePage> {
         widget.dataCuaca[widget.intGPS][widget.indexTime][5].toString();
 
     var teksCuacaBesok = 'Besok Hari , \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][3][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][3][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][3][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][3][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][0][5].toString();
+
+    var teksCuacaPagi = 'Pagi Hari , \n cuaca ' +
         widget.dataCuaca[widget.intGPS][0][1].toString() +
         ' dengan suhu ' +
         widget.dataCuaca[widget.intGPS][0][2].toString() +
@@ -181,6 +194,28 @@ class _HomePageState extends State<HomePage> {
         widget.dataCuaca[widget.intGPS][0][4].toString().substring(0, 2) +
         ' kilometer perjam ke ' +
         widget.dataCuaca[widget.intGPS][0][5].toString();
+
+    var teksCuacaSiang = 'Siang Hari , \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][1][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][1][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][1][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][1][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][1][5].toString();
+
+    var teksCuacaMalam = 'Malam Hari , \n cuaca ' +
+        widget.dataCuaca[widget.intGPS][2][1].toString() +
+        ' dengan suhu ' +
+        widget.dataCuaca[widget.intGPS][2][2].toString() +
+        'derajat, kelembaban ' +
+        widget.dataCuaca[widget.intGPS][2][3].toString() +
+        '%, kecepatan angin ' +
+        widget.dataCuaca[widget.intGPS][2][4].toString().substring(0, 2) +
+        ' kilometer perjam ke ' +
+        widget.dataCuaca[widget.intGPS][2][5].toString();
 
     var teksCuacaBesokPagi = 'Besok Pagi , \n cuaca ' +
         widget.dataCuaca[widget.intGPS][3][1].toString() +
@@ -246,6 +281,15 @@ class _HomePageState extends State<HomePage> {
 
     if (cuaca) {
       await flutterTts.speak(teksCuaca);
+    }
+    if (cuaca && pagi) {
+      await flutterTts.speak(teksCuacaPagi);
+    }
+    if (cuaca && siang) {
+      await flutterTts.speak(teksCuacaSiang);
+    }
+    if (cuaca && malam) {
+      await flutterTts.speak(teksCuacaMalam);
     }
     if (cuaca && besok) {
       await flutterTts.speak(teksCuacaBesok);
