@@ -108,8 +108,11 @@ class _HomePageState extends State<HomePage> {
   var potensi = '';
 
   //? Data kualitas udara di Dbase
-  var wilUdara = '';
+  var wilUdara;
   var kondisiUdara = '';
+  var indexUdara;
+  var udaraAll;
+  var itemKota;
 
   dynamic languages;
   String language;
@@ -129,6 +132,36 @@ class _HomePageState extends State<HomePage> {
     speech.stop();
     newText = _text.toLowerCase();
 
+    var udara = newText.contains(isUdara) ||
+        newText.contains(isUdaranya) ||
+        newText.contains(isPolusi);
+
+    for (var i = 0; i < widget.dataUdara.length / 2; i++) {
+      itemKota = widget.dataUdara[i][0].toString().toLowerCase();
+      if (itemKota == 'pangkalanbun') {
+        itemKota = 'pangkalan bun';
+      }
+      if (itemKota == 'kototabang') {
+        itemKota = 'koto tabang';
+      }
+      print(itemKota);
+      print(newText);
+      if (newText.contains(itemKota)) {
+        print(true);
+        udaraAll = ("Kualitas Udara di wilayah " + itemKota + " baik");
+        break;
+      }
+      if (widget.dataGPS.toString().toLowerCase() == itemKota) {
+        print(itemKota);
+        indexUdara = widget.dataUdara.indexOf(itemKota);
+        print(indexUdara);
+        udaraAll = ("Kualitas Udara di wilayah " + widget.dataGPS + " baik");
+      }
+      if (!newText.contains(itemKota)) {
+        udaraAll = ("maaf, data diwilayah tersebut tidak ada");
+      }
+    }
+
     var polusi = newText.contains(isPolusi);
     var cuaca = newText.contains(isCuaca) ||
         newText.contains(isHujan) ||
@@ -144,7 +177,7 @@ class _HomePageState extends State<HomePage> {
     var gempa = newText.contains(isGempa) ||
         newText.contains(isGetaran) ||
         newText.contains(isGetarannya);
-    var udara = newText.contains(isUdara) || newText.contains(isUdaranya);
+
     var wilayah1 = newText.contains(isMedan);
     var wilayah2 = newText.contains(isKototabang);
     var wilayah3 = newText.contains(isJambi);
@@ -268,14 +301,6 @@ class _HomePageState extends State<HomePage> {
         widget.dataGempa[0][5].toString().substring(6) +
         ',');
 
-    var udaraMedanText = ("Kualitas Udara di wilayah $isMedan baik");
-    var udaraPangkalanText = ("Kualitas Udara di wilayah $isPangkalan baik");
-    var udaraKotoText = ("Kualitas Udara di wilayah $isKototabang baik");
-    var udaraJambiText = ("Kualitas Udara di wilayah $isJambi sedang");
-    var udaraCibeureumText = ("Kualitas Udara di wilayah $isCibeureum baik");
-    var udaraAll = ("Kualitas Udara di wilayah" + widget.dataGPS + "baik");
-    var noData = ("maaf, data di kota anda tidak tersedia");
-
     flutterTts.setLanguage(bahasa);
     await flutterTts.setPitch(pitch);
 
@@ -307,36 +332,7 @@ class _HomePageState extends State<HomePage> {
     if (gempa) {
       await flutterTts.speak(gempaText);
     }
-    if (udara && wilayah1) {
-      await flutterTts.speak(udaraMedanText);
-    }
-    if (udara && wilayah2) {
-      await flutterTts.speak(udaraKotoText);
-    }
-    if (udara && wilayah3) {
-      await flutterTts.speak(noData);
-    }
-    if (udara && wilayah4) {
-      await flutterTts.speak(udaraCibeureumText);
-    }
-    if (udara && wilayah5) {
-      await flutterTts.speak(udaraPangkalanText);
-    }
-    if (polusi && wilayah1) {
-      await flutterTts.speak(udaraMedanText);
-    }
-    if (polusi && wilayah2) {
-      await flutterTts.speak(udaraKotoText);
-    }
-    //if (polusi && wilayah3) {
-    //  await flutterTts.speak(udaraKemayoranText);
-    //}
-    if (polusi && wilayah4) {
-      await flutterTts.speak(udaraCibeureumText);
-    }
-    if (polusi && wilayah5) {
-      await flutterTts.speak(udaraPangkalanText);
-    }
+
     if (udara || polusi) {
       await flutterTts.speak(udaraAll);
     }
