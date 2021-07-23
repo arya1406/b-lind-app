@@ -1,16 +1,12 @@
 import 'dart:convert';
 import 'package:geocoding/geocoding.dart';
-import 'package:b_lind/page_gempa.dart';
 import 'package:flutter/material.dart';
-import 'package:b_lind/home.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:xml2json/xml2json.dart';
 import 'dart:async'; // Contains HTML parsers to generate a Document object
 //import 'package:html/dom.dart' as dom;
-
-import 'gps_page_coba.dart';
 import 'tutorialPage.dart';
 
 class SplashScreen extends StatefulWidget {

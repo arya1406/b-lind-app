@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:b_lind/home.dart';
 import 'package:flutter/material.dart';
@@ -44,30 +46,40 @@ class _TutorialPageState extends State<TutorialPage> {
   double rate = 0.5;
   String newVoiceText;
   TtsState ttsState = TtsState.stopped;
+  var duration = const Duration(seconds: 2);
+  Timer timer;
 
   get isPlaying => ttsState == TtsState.playing;
   get isStopped => ttsState == TtsState.stopped;
   stt.SpeechToText speech = stt.SpeechToText();
   final FlutterTts flutterTts = FlutterTts();
 
-  _speakTutor() async {
+  Future _speakTutor1() async {
     speech.stop();
     flutterTts.setLanguage(bahasa);
     flutterTts.setPitch(pitch);
     teksTutorial1 = "selamat datang di info B M K G untuk tunanetra. ";
     teksTutorial2 =
         "aplikasi ini akan memudahkan anda untuk mendapatkan informasi prakiraan cuaca hari ini dan besok di wilayah anda, gempa terkini diatas 5 magnitudo dan info kualitas udara, ";
+    flutterTts.speak(teksTutorial1 + teksTutorial2);
+  }
+
+  Future _speakTutor2() async {
+    flutterTts.setLanguage(bahasa);
+    flutterTts.setPitch(pitch);
     teksTutorial3 =
         " Halaman utama aplikasi terdapat tombol mikrofon, ketika tombol di klik akan timbul suara klik dan bergetar, kemudian anda bisa bertanya tentang seputar informasi cuaca di tempat anda, gempa dan kualitas udara, ";
     teksTutorial4 =
         "seperti, gempa yang terkini. atau. polusi udara di wilayah medan. atau. cuaca hari ini gimana ?.";
+    flutterTts.speak(teksTutorial3 + teksTutorial4);
+  }
+
+  Future _speakTutor3() async {
+    flutterTts.setLanguage(bahasa);
+    flutterTts.setPitch(pitch);
     teksTutorial5 =
         " aplikasi akan memberikan informasi yang anda minta dalam bentuk suara. jika anda menslide ke kiri layar, terdapat menu tombol informasi cuaca diwilayah lain, tombol informasi gempa terkini, tombol informasi kualitas udara. Semoga aplikasi ini dapat membantu anda dalam mendapatkan informasi prakiraan cuaca, gempa bumi, dan kualitas udara. tekan tombol skip dibawah untuk masuk ke menu utama.";
-    flutterTts.speak(teksTutorial1 +
-        teksTutorial2 +
-        teksTutorial3 +
-        teksTutorial4 +
-        teksTutorial5);
+    flutterTts.speak(teksTutorial5);
   }
 
   Future _stop() async {
@@ -125,7 +137,15 @@ class _TutorialPageState extends State<TutorialPage> {
                                   if (await Vibration.hasVibrator()) {
                                     Vibration.vibrate(duration: 100);
                                   }
-                                  _speakTutor();
+                                  await _speakTutor1();
+                                  duration = const Duration(seconds: 16);
+                                  new Timer(duration, () {
+                                    _speakTutor2();
+                                  });
+                                  duration = const Duration(seconds: 39);
+                                  new Timer(duration, () {
+                                    _speakTutor3();
+                                  });
                                 },
                                 child: Icon(
                                   Icons.play_arrow_sharp,
