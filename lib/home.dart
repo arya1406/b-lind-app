@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
   String bahasa = 'id-ID';
   String empty = 'mendengarkan...';
   Map varMap;
-
+  var isSuhu = 'suhu';
   var isMendung = 'mendung';
   var isHujan = 'hujan';
   var isGerimis = 'gerimis';
@@ -66,6 +66,7 @@ class _HomePageState extends State<HomePage> {
   var isGempa = 'gempa'; // gempa
   var isPolusi = 'polusi';
   var isKotor = 'kotor';
+  var isGas = 'gas';
   var isUdaranya = 'udaranya'; // udara
   var isUdara = 'udara';
   var isHari = 'hari ini';
@@ -134,7 +135,8 @@ class _HomePageState extends State<HomePage> {
 
     var udara = newText.contains(isUdara) ||
         newText.contains(isUdaranya) ||
-        newText.contains(isPolusi);
+        newText.contains(isPolusi) ||
+        newText.contains(isGas);
 
     for (var i = 0; i < widget.dataUdara.length / 2; i++) {
       itemKota = widget.dataUdara[i][0].toString().toLowerCase();
@@ -173,7 +175,8 @@ class _HomePageState extends State<HomePage> {
         newText.contains(isDingin) ||
         newText.contains(isPanas) ||
         newText.contains(isSejuk) ||
-        newText.contains(isAwan);
+        newText.contains(isAwan) ||
+        newText.contains(isSuhu);
     var gempa = newText.contains(isGempa) ||
         newText.contains(isGetaran) ||
         newText.contains(isGetarannya);

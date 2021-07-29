@@ -79,6 +79,7 @@ class _TutorialPageState extends State<TutorialPage> {
     flutterTts.setPitch(pitch);
     teksTutorial5 =
         " aplikasi akan memberikan informasi yang anda minta dalam bentuk suara. jika anda menslide ke kiri layar, terdapat menu tombol informasi cuaca diwilayah lain, tombol informasi gempa terkini, tombol informasi kualitas udara. Semoga aplikasi ini dapat membantu anda dalam mendapatkan informasi prakiraan cuaca, gempa bumi, dan kualitas udara. tekan tombol skip dibawah untuk masuk ke menu utama.";
+
     flutterTts.speak(teksTutorial5);
   }
 
@@ -137,14 +138,16 @@ class _TutorialPageState extends State<TutorialPage> {
                                   if (await Vibration.hasVibrator()) {
                                     Vibration.vibrate(duration: 100);
                                   }
+                                  speech.stop();
+                                  //timer.cancel();
                                   await _speakTutor1();
-                                  duration = const Duration(seconds: 16);
-                                  new Timer(duration, () {
-                                    _speakTutor2();
+                                  timer = Timer(const Duration(seconds: 16),
+                                      () async {
+                                    await _speakTutor2();
                                   });
-                                  duration = const Duration(seconds: 39);
-                                  new Timer(duration, () {
-                                    _speakTutor3();
+                                  timer = Timer(const Duration(seconds: 38),
+                                      () async {
+                                    await _speakTutor3();
                                   });
                                 },
                                 child: Icon(
