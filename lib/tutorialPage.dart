@@ -53,7 +53,6 @@ class _TutorialPageState extends State<TutorialPage> {
   var duration = const Duration(seconds: 2);
   Timer timer;
 
-
   get isPlaying => ttsState == TtsState.playing;
   get isStopped => ttsState == TtsState.stopped;
   stt.SpeechToText speech = stt.SpeechToText();
@@ -158,8 +157,6 @@ class _TutorialPageState extends State<TutorialPage> {
                                   speech.stop();
 
                                   await _speakTutor1();
-                                 _timer2();
-                                _timer3();
                                 },
                                 child: Icon(
                                   Icons.play_arrow_sharp,
@@ -190,8 +187,7 @@ class _TutorialPageState extends State<TutorialPage> {
                                 if (await Vibration.hasVibrator()) {
                                   Vibration.vibrate(duration: 100);
                                 }
-                                timer2.cancel();
-                                timer3.cancel();
+
                                 _stop();
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
